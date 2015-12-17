@@ -4,10 +4,10 @@
   "description": "daxuedogs web client front-end",
   "main": "index.js",
   "scripts": {
-	"start": "webpack-dev-server --process --colors --hot --inline --devtool eval",
-	    "build": "webpack --process --colors",
-        "deploy": "webpack -p --process --colors --config webpack.production.config.js",
-	"test": "mocha"
+    "start": "webpack-dev-server --process --colors --hot --inline --devtool eval",
+    "build": "webpack --process --colors",
+    "deploy": "webpack -p --process --colors --config webpack.production.config.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",

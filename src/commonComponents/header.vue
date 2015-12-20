@@ -37,7 +37,7 @@
 
     .header
         flex-design()
-        background-color: teal
+        background-color: $header-color
         .left-icon
             flex-design()
             .more-button
@@ -54,14 +54,12 @@
     .expand-transition
       transition: all .3s ease
       height: 10rem
-      padding: 10rem
-      background-color: #eee
+      background-color: $header-color
       overflow: hidden
 
     /* .expand-enter 定义进入的开始状态 */
     /* .expand-leave 定义离开的结束状态 */
     .expand-enter, .expand-leave
       height: 0
-      padding: 0 10rem
       opacity: 0
 </style>

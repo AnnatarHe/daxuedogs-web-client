@@ -11,6 +11,7 @@ import Router from 'vue-router'
 import Resource from 'vue-resource'
 import App from './src/indexComponents/App.vue'
 import IndexComponent from './src/indexComponents/indexComponent.vue'
+import Loading from './src/commonComponents/loading.vue'
 
 Vue.use(Router)
 Vue.use(Resource)
@@ -18,11 +19,12 @@ Vue.use(Resource)
 let router = new Router()
 
 router.map({
-    'index': {
+    '/': {
         component: IndexComponent
+    },
+    'loading': {
+        component: Loading
     }
 })
 
 router.start(App, '#index_page')
-
-console.log('hello world');

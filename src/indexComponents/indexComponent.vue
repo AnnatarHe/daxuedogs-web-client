@@ -1,7 +1,7 @@
 <template>
-<div>
-  <h1>Hello world</h1>
-</div>
+    <div>
+        <h1>Hello world</h1>
+    </div>
 </template>
 
 <style lang='stylus'>
@@ -10,7 +10,5 @@
 
 <script>
 
-export default {
-
-}
+    export default {}
 </script>

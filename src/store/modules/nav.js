@@ -14,12 +14,12 @@ export const navbarInitialState = false
 
 export const navbarMutations = {
     [SHOW_NAV](state, status) {
-        state.status = status
+        state.nav = status
     },
     [HIDE_NAV](state, status) {
-        state.status = status
+        state.nav = status
     },
     [TOGGLE_NAV](state) {
-        state.status = !state.status
+        state.nav = !state.nav
     }
 }

@@ -22,7 +22,7 @@ router.map({
     '/': {
         component: IndexComponent
     },
-    'loading': {
+    '/loading': {
         component: Loading
     }
 })

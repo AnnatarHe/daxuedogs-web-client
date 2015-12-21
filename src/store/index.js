@@ -8,7 +8,8 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {navbarInitialState, navbarMutations} from './modules/nav'
+import { navbarInitialState, navbarMutations } from './modules/nav'
+import { activitiesInitialData, getActiviesMutations } from './modules/activities'
 import * as actions from './actions'
 
 Vue.use(Vuex)
@@ -18,10 +19,11 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
     state: {
-        nav: navbarInitialState
+        nav: navbarInitialState,
+        activities: activitiesInitialData
     },
     actions,
-    mutations: [navbarMutations],
+    mutations: [navbarMutations, getActiviesMutations],
     strict: debug,
     middlewares: debug ? [Vuex.createLogger()] : []
 })

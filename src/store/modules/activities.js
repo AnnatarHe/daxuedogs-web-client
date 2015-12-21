@@ -5,3 +5,13 @@
  */
 
 'use strict';
+
+import { GET_ACTIVIES_FROM_SERVER } from '../mutation-types'
+
+export const activitiesInitialData = []
+
+export const getActiviesMutations = {
+    [GET_ACTIVIES_FROM_SERVER](state, activities) {
+        state.activities = activities.data
+    }
+}

@@ -37,5 +37,9 @@
     "vuex": "^0.2.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "jasmine-core": "^2.4.1"
   }
 }

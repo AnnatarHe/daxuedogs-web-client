@@ -1,6 +1,6 @@
 <template>
     <div class="index-component">
-        <h1>Hello world</h1>
+        <activities-component :activities="activities"></activities-component>
     </div>
 </template>
 
@@ -8,6 +8,18 @@
 </style>
 
 <script>
-
-    export default {}
+import Store from '../store/index'
+    export default {
+        components: {
+            'activitiesComponent': require('./activitiesComponent.vue')
+        },
+        ready() {
+            Store.actions.getActivitiesDataFromServer(this)
+        },
+        computed: {
+            activities() {
+                return Store.state.activities
+            }
+        }
+    }
 </script>

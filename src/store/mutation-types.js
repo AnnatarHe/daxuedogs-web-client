@@ -6,6 +6,7 @@
 
 'use strict';
 
-export const SHOW_NAV = 'SHOW_NAV'
-export const HIDE_NAV = 'HIDE_NAV'
 export const TOGGLE_NAV = 'TOGGLE_NAV'
+
+// 活动部分的
+export const GET_ACTIVIES_FROM_SERVER = 'GET_ACTIVIES_FROM_SERVER'

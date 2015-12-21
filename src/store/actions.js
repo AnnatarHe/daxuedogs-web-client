@@ -7,9 +7,19 @@
 'use strict';
 
 import * as types from './mutation-types'
+import { remoteAddress } from '../resource'
 
 export const toggleNav = types.TOGGLE_NAV
 
 export const toggleNavbar = ({ dispatch, state }) => {
     dispatch(types.TOGGLE_NAV)
+}
+
+export const getActivitiesDataFromServer = ({ dispatch, state }, _this) => {
+    _this.$http.get(remoteAddress.getActivitiesData)
+        .then((res) => {
+            dispatch(types.GET_ACTIVIES_FROM_SERVER, JSON.parse(res.response))
+        }, (res) => {
+            console.log('error');
+        })
 }

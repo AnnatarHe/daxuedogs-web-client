@@ -19,7 +19,7 @@
         },
         data() {
             return {
-                title: '活动列表'                
+                title: '活动列表'
             }
         },
         computed: {

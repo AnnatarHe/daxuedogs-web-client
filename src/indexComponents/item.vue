@@ -6,11 +6,15 @@
         <div class="content">
             <h5 class="title">{{ detail.title }}</h5>
             <div class="extra">
-                <div class="label">{{ registed }}</div>
+                <div class="label">{{ detail.registed }}</div>
                 <span>人报名</span>
             </div>
             <p class="desc">{{ detaildesc }}</p>
-            <a :href="detail.id" class="button detail">报名</a>
+            <a v-link="{ name: 'detail', params: { id: detail.id }}"
+                class="button detail"
+                >
+                报名
+            </a>
         </div>
     </div>
 </template>

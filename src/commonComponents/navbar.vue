@@ -4,7 +4,7 @@
             大学狗们
         </h3>
         <ul class="navbar-list">
-            <li v-link="{ path: '/'}">
+            <li v-link="{ path: '/' }">
                 <i class="fa fa-home fa-lg"></i>
                 首页
             </li>

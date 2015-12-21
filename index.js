@@ -11,7 +11,8 @@ import Router from 'vue-router'
 import Resource from 'vue-resource'
 import App from './src/indexComponents/App.vue'
 import IndexComponent from './src/indexComponents/indexComponent.vue'
-import Loading from './src/commonComponents/loading.vue'
+import LoadingComponent from './src/commonComponents/loading.vue'
+import DetailComponent from './src/indexComponents/detailComponent.vue'
 
 Vue.use(Router)
 Vue.use(Resource)
@@ -23,8 +24,13 @@ router.map({
         component: IndexComponent
     },
     '/loading': {
-        component: Loading
+        component: LoadingComponent
+    },
+    '/activity/:id': {
+        name: 'detail',
+        component: DetailComponent
     }
+
 })
 
 router.start(App, '#index_page')

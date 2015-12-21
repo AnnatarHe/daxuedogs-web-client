@@ -5,6 +5,10 @@
                 <i class="fa fa-bars fa-lg"></i>
             </div>
         </div>
+        <div class="status">
+            <h2>{{ currentStatus }}</h2>
+        </div>
+
         <div class="right login-container">
 
         </div>
@@ -24,6 +28,9 @@
         computed: {
             navStatus() {
                 return Store.state.nav
+            },
+            currentStatus() {
+                return Store.state.headerTitle
             }
         },
         methods: {
@@ -37,29 +44,37 @@
 
     .header
         flex-design()
-        background-color: $header-color
+        background-color $header-color
         .left-icon
             flex-design()
             .more-button
-                padding: 1rem
-                color: #fff
-                transition: all .35s ease-in
+                padding 1rem
+                color #fff
+                transition all .35s ease-in
                 &:hover
-                    background-color: #fff
-                    color: #000
+                    background-color #fff
+                    color #000
+        .status
+            flex-design()
+            align-items center
+            justify-content center
+            h2
+                margin 0
+                color #fff
+
         .login-container
             flex-design()
-            padding: 1rem
+            padding 1rem
     // 切换效果的动画
     .expand-transition
-      transition: all .3s ease
-      height: 10rem
-      background-color: $header-color
-      overflow: hidden
+      transition all .3s ease
+      height 10rem
+      background-color $header-color
+      overflow hidden
 
     /* .expand-enter 定义进入的开始状态 */
     /* .expand-leave 定义离开的结束状态 */
     .expand-enter, .expand-leave
-      height: 0
-      opacity: 0
+      height 0
+      opacity 0
 </style>

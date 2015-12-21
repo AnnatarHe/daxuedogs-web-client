@@ -9,12 +9,15 @@
                 <div class="label">{{ detail.registed }}</div>
                 <span>人报名</span>
             </div>
-            <p class="desc">{{ detaildesc }}</p>
-            <a v-link="{ name: 'detail', params: { id: detail.id }}"
-                class="button detail"
-                >
-                报名
-            </a>
+            <p class="desc">{{ detail.desc | cutdesc }}</p>
+            <div class="link-container">
+                <a v-link="{ name: 'detail', params: { id: detail.id }}"
+                    class="button-detail"
+                    >
+                    报名
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 </template>
@@ -30,10 +33,50 @@
 
 <style lang='stylus'>
 @import '../stylus/variable'
-    .activity-component
+.activity-component
+    border-radius .5rem
+    padding .5rem 0
+    margin 1rem 0
+    background-color #ddd
+    flex-design()
+    .image
         flex-design()
+        justify-content center
+        align-items center
+        img
+            border-radius .8rem
+            width $image-size-at-list
+            height $image-size-at-list
 
-        .content
+    .content
+        display flex
+        flex 2
+        flex-direction column
+        padding 1rem
+        .title
+            margin 0
+            font-size 1.5rem
+            margin-bottom .8rem
+        .extra
+            .label
+                display inline-block
+                background-color lighten($header-color, 20%)
+                color darken(#888, 10%)
+                padding .5rem 1rem
+                border-radius .5rem
+            span
+                display inline-block
+        .link-container
+            flex-design()
+            align-items center
+            justify-content center
+            border-radius .5rem
             a
-                color #000
+                padding .5rem 1rem
+                color #fff
+                transition all .35s ease
+                background-color deeppink
+                &:hover
+                    box-shadow .2rem .2rem .8rem #888
+
 </style>

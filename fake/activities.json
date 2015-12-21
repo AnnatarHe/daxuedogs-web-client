@@ -3,7 +3,7 @@
         {
             "id": "1",
             "hero": "/fake/img.jpg",
-            "title": "title",
+            "title": "不是荧光跑",
             "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "registed": "15",
             "endTime": "2015-04-12 15:15:15"
@@ -11,7 +11,7 @@
         {
             "id": "2",
             "hero": "/fake/img.jpg",
-            "title": "fuck",
+            "title": "不是女神活动",
             "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "registed": "11",
             "endTime": "2015-04-52 15:15:15"

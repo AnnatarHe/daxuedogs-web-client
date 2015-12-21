@@ -14,6 +14,7 @@ import Store from '../store/index'
             'activitiesComponent': require('./activitiesComponent.vue')
         },
         ready() {
+
             Store.actions.getActivitiesDataFromServer(this)
         },
         computed: {

@@ -23,3 +23,11 @@ export const getActivitiesDataFromServer = ({ dispatch, state }, _this) => {
             console.log('error');
         })
 }
+
+export const sendAlterMessage = ({ dispatch, state }, alterMessageObj) => {
+    dispatch(types.SEND_MESSAGE_AT_ALERT, alterMessageObj)
+}
+
+export const setHeaderTitle = ({ dispatch, state }, title) => {
+    dispatch(types.SET_HEADER_TITLE, title)
+}

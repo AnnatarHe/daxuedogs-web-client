@@ -1,8 +1,8 @@
 <template>
     <nav class="navbar">
-        <h3 class="navbar-title">
+        <!-- <h3 class="navbar-title">
             大学狗们
-        </h3>
+        </h3> -->
         <ul class="navbar-list">
             <li v-link="{ path: '/' }">
                 <i class="fa fa-home fa-lg"></i>

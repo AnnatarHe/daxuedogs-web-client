@@ -70,6 +70,8 @@
 <script>
 export default {
 
+    props:['id'],
+
     data() {
         return {
             'student_id': '',
@@ -85,7 +87,24 @@ export default {
 
     methods: {
         submitForm() {
-            console.log('form post');
+            let remoteSaveServer = ''
+            let userInfo = {
+                'student_id': this.student_id,
+                'email': this.email,
+                'name': this.name,
+                'gender': this.gender,
+                'dormitory': this.dormitory,
+                'major_id': this.major_id,
+                'activity_id': this.id,
+                'phone': this.phone
+            }
+
+            this.$http.save(remoteSaveServer, userInfo)
+                .then((res)=> {
+                    console.log(res);
+                }, (err) => {
+                    console.log(err);
+                })
         },
         selectMale() {
             this.gender = 'male'
@@ -141,5 +160,6 @@ export default {
             font-size 1.1rem
             border-radius .3rem
             padding 1rem
+            color #888
 
 </style>

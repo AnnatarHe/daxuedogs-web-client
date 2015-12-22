@@ -2,8 +2,16 @@
 
     <div class="detail-component">
         <detail-info-component :info="info"></detail-info-component>
+        <div class="div">
 
-        <form-component></form-component>
+            <div class="description">
+                <span>下面报名</span>
+                <br>
+                <i class="fa fa-angle-double-down fa-lg"></i>
+            </div>
+
+        </div>
+        <form-component :id="id"></form-component>
     </div>
 
 </template>
@@ -14,6 +22,8 @@ export default {
         return {
             'id': this.$route.params.id
         }
+    },
+    ready() {
     },
     computed: {
         info() {
@@ -30,5 +40,38 @@ export default {
 }
 </script>
 <style lang="stylus">
+@import '../stylus/variable'
 
+.div
+    flex-design()
+    media-width()
+    margin 1rem auto
+    justify-content center
+    align-items center
+    position relative
+    .description
+        display flex
+        flex-direction column
+        justify-content center
+        align-items center
+        color #888
+    &:before
+        content ''
+        position absolute
+        height 2px
+        width 45%
+        display block
+        background-color #ddd
+        top 50%
+        left 0
+
+    &:after
+        content ''
+        position absolute
+        height 2px
+        width 45%
+        display block
+        background-color #ddd
+        top 50%
+        right 0
 </style>

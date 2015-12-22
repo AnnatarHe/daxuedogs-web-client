@@ -31,13 +31,13 @@
 </script>
 
 <style lang='stylus'>
-    @require '../stylus/global'
+@require '../stylus/global'
 
-    .view
-        opactity: 1
-        transition: all .35s ease-in
-        &.v-enter, &.v-leave
-            opactity: 0
-            display: none
+.view
+    opactity: 1
+    transition: all .35s ease-in
+    &.v-enter, &.v-leave
+        opactity: 0
+        display: none
 
 </style>

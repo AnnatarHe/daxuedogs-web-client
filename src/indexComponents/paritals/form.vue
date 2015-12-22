@@ -1,29 +1,44 @@
 <template>
     <div class="form-container form-for-sign">
-        <form class="form" @submit.prevent="submitForm">
+        <form class="form" @submit.prevent="submitForm" novalidate>
 
-            <div class="field">
+            <div :class="{ field:true, error: email_err }">
                 <input
                     type="email"
                     v-model="email"
                     placeholder="邮箱"
+                    @blur="checkEmail"
                 >
+                <form-error-alert
+                    v-show="email_err"
+                >
+                </form-error-alert>
             </div>
 
-            <div class="field">
+            <div :class="{field: true, error: number_err}">
                 <input
                     type="number"
                     v-model="student_id"
                     number
                     placeholder="请输入学号"
+                    @blur="checkNumber"
                 />
+                <form-error-alert
+                    v-show="number_err"
+                >
+                </form-error-alert>
             </div>
-            <div class="field">
+            <div :class="{field: true, error: name_err}">
                 <input
                     type="text"
                     v-model="name"
                     placeholder="你的姓名"
+                    @blur="checkName"
                 />
+                <form-error-alert
+                    v-show="name_err"
+                >
+                </form-error-alert>
             </div>
             <div class="field gender-field">
                 <label for="gender">性别</label>
@@ -48,13 +63,18 @@
                 </select>
             </div>
 
-            <div class="field">
+            <div :class="{field: true, error: phone_err}">
                 <input
                     type="number"
                     v-model="phone"
                     number
                     placeholder="手机号"
+                    @blur="checkPhone"
                 />
+                <form-error-alert
+                    v-show="phone_err"
+                >
+                </form-error-alert>
             </div>
 
             <div class="field submit-field">
@@ -68,9 +88,13 @@
 </template>
 
 <script>
+
 export default {
 
     props:['id'],
+    components: {
+        'formErrorAlert': require('./form_error_alert.vue')
+    },
 
     data() {
         return {
@@ -81,10 +105,13 @@ export default {
             'dormitory': '',
             'activity_id': '',
             'major_id': '',
-            'phone': ''
+            'phone': '',
+            'email_err': false,
+            'number_err': false,
+            'phone_err': false,
+            'name_err': false
         }
     },
-
     methods: {
         submitForm() {
             let remoteSaveServer = ''
@@ -111,6 +138,39 @@ export default {
         },
         selectFemale() {
             this.gender = 'female'
+        },
+        checkEmail() {
+            if (this.email.length < 10) {
+                this.email_err = true
+            }else {
+                this.email_err = false
+            }
+        },
+        checkNumber() {
+            // it don't work
+            console.log(this.student_id)
+            if (this.student_id.length < 7 && this.student_id > 10) {
+                this.number_err = true
+            }else {
+                this.number_err = false
+            }
+        },
+        checkName() {
+            let nameLen = this.name.trim().length
+            if (nameLen < 2 && nameLen > 10) {
+                this.name_err = true
+            }else {
+                this.name_err = false
+            }
+        },
+        checkPhone() {
+            let phoneLen = this.phone.length
+            let pattern = /^[1,3,4,5,7,8][0-9]{10}$/g
+            if ( !pattern.test(phoneLen) ) {
+                this.phone_err = true
+            }else {
+                this.phone_err = false
+            }
         }
     }
 
@@ -128,6 +188,8 @@ export default {
     align-items center
     justify-content center
     .gender-field
+        flex-design()
+        flex-direction row
         label
             flex-design()
             align-items center
@@ -161,5 +223,6 @@ export default {
             border-radius .3rem
             padding 1rem
             color #888
+            border none
 
 </style>

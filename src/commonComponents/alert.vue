@@ -1,8 +1,8 @@
 <template>
-    <div :class="className" transition="fade">
+    <div :class="className" transition="fade" v-show="alertStatus">
         <div class="alert-container">
             <div class="head">
-                <h5>{{ title }}</h5>
+                <h5>{{ info.title }}</h5>
                 <div class="close">
                     <div class="close-btn"
                         @click="close"
@@ -18,13 +18,14 @@
                     >
                 关闭 </span>
             </div>
-            <span class="msg">{{ msg }}</span>
+            <span class="msg">{{ info.msg }}</span>
         </div>
 
     </div>
 </template>
 
 <script>
+import Store from '../store/index'
 // alert 组件
 // 使用方式
 // <alert-component
@@ -35,25 +36,30 @@
 // </alert-component>
 export default {
 
-    props: ['type', 'msg', 'title'],
 
     data() {
         return {
             'altStatus': false
         }
     },
-
     computed: {
+        info() {
+            return Store.state.alertMsg
+        },
         className() {
-            let isError = this.type === 'error' ? true : false
-            let isSucess = this.type === 'success' ? true : false
+            let isError = this.info.type === 'error' ? true : false
+            let isSucess = this.info.type === 'success' ? true : false
 
             return {
                 'alert': true,
                 'alert-error': isError,
                 'alert-success': isSucess
             }
+        },
+        alertStatus() {
+            return this.info.msg.length > 0 ? true : false
         }
+
     },
     methods: {
         close() {
@@ -74,6 +80,7 @@ export default {
 @import '../stylus/variable'
 
 .alert
+    margin-top 1rem
     flex-design()
     flex-direction column
     align-items center
@@ -91,6 +98,10 @@ export default {
             display flex
             flex 3
             font-size 1rem
+    &.alert-success
+        .alert-container
+            background-color $alert-container-success-color
+            color teal
     &.alert-error
         .alert-container
             background-color $alert-container-error-color

@@ -24,10 +24,22 @@ export const getActivitiesDataFromServer = ({ dispatch, state }, _this) => {
         })
 }
 
-export const sendAlterMessage = ({ dispatch, state }, alterMessageObj) => {
+// 设置弹出框警告
+export const sendAlertMessage = ({ dispatch, state }, alterMessageObj) => {
     dispatch(types.SEND_MESSAGE_AT_ALERT, alterMessageObj)
 }
 
+// 设置头部的标题
 export const setHeaderTitle = ({ dispatch, state }, title) => {
     dispatch(types.SET_HEADER_TITLE, title)
+}
+
+export const getCurrentActivity = ({ dispatch, state }, _this, id) => {
+    // _this.$http.get(remoteAddress.getOneActivityAddress + '/' + id)
+    _this.$http.get(remoteAddress.getOneActivityAddress)
+    .then((res) => {
+        dispatch(types.GET_CURRENT_ACTIVITY, JSON.parse(res.response))
+    }, (res) => {
+        console.log('error at get a activity')
+    })
 }

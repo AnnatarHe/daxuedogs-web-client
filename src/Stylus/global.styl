@@ -1,5 +1,5 @@
 @require './normalize'
-
+@import './variable'
 body
   font-family "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
 
@@ -9,3 +9,42 @@ a
   &:visited
     color #ffffff
 
+::selection
+    background-color #ddd
+
+.button
+    padding .5rem 1rem
+    transition all .35s ease
+    span
+        padding-left .3rem
+    &:hover
+        box-shadow .2rem .2rem .8rem #888
+
+// 表单控件
+.form-container
+    flex-design()
+    media-width()
+
+.form
+    flex-design()
+    flex-direction column
+    align-items center
+    justify-content center
+    .field
+        flex-design()
+        flex-diection row
+        margin 1rem 0
+        width 80%
+
+        input
+            padding 1rem
+            width 100%
+            font-size 1.1rem
+            border none
+            border-radius .3rem
+            &:focus
+                border-bottom 1px solid #888
+                outline none
+    .submit-field
+        justify-content center
+        align-items center

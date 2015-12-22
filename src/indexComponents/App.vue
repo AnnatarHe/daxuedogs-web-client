@@ -2,6 +2,7 @@
 
     <div>
         <header-component></header-component>
+        <alert-component></alert-component>
         <div class="container">
             <router-view
                     class="view"
@@ -16,14 +17,16 @@
 </template>
 
 <script>
-    import HeaderComponent from '../commonComponents/header.vue'
-    import FooterComponent from '../commonComponents/footer.vue'
 
     export default {
         components: {
-            HeaderComponent,
-            FooterComponent
-        }
+            HeaderComponent: require('../commonComponents/header.vue'),
+            FooterComponent: require('../commonComponents/footer.vue'),
+            AlertComponent: require('../commonComponents/alert.vue')
+        },
+        computed: {
+
+        },
     }
 </script>
 

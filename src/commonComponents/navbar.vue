@@ -6,11 +6,12 @@
         <ul class="navbar-list">
             <li v-link="{ path: '/' }">
                 <i class="fa fa-home fa-lg"></i>
-                首页
+                <span>首页</span>
+
             </li>
             <li v-link="{ path: '/loading' }">
                 <i class="fa fa-th fa-lg"></i>
-                Loading
+                <span>Loading</span>
             </li>
         </ul>
     </nav>
@@ -46,6 +47,7 @@
                 width: 100%
                 cursor: pointer
                 justify-content: center
+                align-items center
                 i.fa
                     padding:0 1rem
                 &:hover

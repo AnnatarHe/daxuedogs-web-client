@@ -2,7 +2,11 @@
 
 import { SEND_MESSAGE_AT_ALERT, SET_HEADER_TITLE } from '../mutation-types'
 
-export const messageInitialInfo = {}
+export const messageInitialInfo = {
+    title: '',
+    msg: '',
+    type: 'success'
+}
 export const headerInitialTitle = '首页'
 
 // 格式是这样的：
@@ -12,8 +16,8 @@ export const headerInitialTitle = '首页'
 //     type: 'error' | 'success'
 // }
 export const setMessageMutations = {
-    [SEND_MESSAGE_AT_ALERT](state, alter) {
-        state.alter = alter
+    [SEND_MESSAGE_AT_ALERT](state, alert) {
+        state.alertMsg = alert
     }
 }
 

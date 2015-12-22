@@ -15,10 +15,9 @@ import Store from './src/store/index'
 
 import Filters from './src/filtersDir/filters'
 
-console.log(Filters);
-
 Vue.use(Router)
 Vue.use(Resource)
+Vue.filter('cuttime', Filters.cutTime)
 Vue.filter('cutdesc', Filters.cutDesc)
 
 let router = new Router()

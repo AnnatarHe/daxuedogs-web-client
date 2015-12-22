@@ -12,24 +12,18 @@
 
 <script>
 
-    export default {
-        props: ['activities'],
-        components: {
-            'itemComponent': require('./item.vue'),
-            'alertComponent': require('../commonComponents/alert.vue')
-        },
-        data() {
-            return {
-                title: '活动列表'
-            }
-        },
-        computed: {
-
-        },
-        methods: {
-
+export default {
+    props: ['activities'],
+    components: {
+        'itemComponent': require('./item.vue'),
+        'alertComponent': require('../commonComponents/alert.vue')
+    },
+    data() {
+        return {
+            title: '活动列表'
         }
     }
+}
 
 </script>
 

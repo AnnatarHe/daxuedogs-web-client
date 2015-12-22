@@ -9,7 +9,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { navbarInitialState, navbarMutations } from './modules/nav'
-import { activitiesInitialData, getActiviesMutations } from './modules/activities'
+import {
+    activitiesInitialData,
+    getActiviesMutations,
+    currentInitialActivity,
+    getCurrentActivityMutations
+} from './modules/activities'
 import {
     messageInitialInfo,
     setMessageMutations,
@@ -27,15 +32,17 @@ export default new Vuex.Store({
     state: {
         nav: navbarInitialState,
         activities: activitiesInitialData,
-        alterMsg: messageInitialInfo,
-        headerTitle: headerInitialTitle
+        alertMsg: messageInitialInfo,
+        headerTitle: headerInitialTitle,
+        currentActivity: currentInitialActivity
     },
     actions,
     mutations: [
         navbarMutations,
         getActiviesMutations,
         setMessageMutations,
-        setHeaderTitleMutations
+        setHeaderTitleMutations,
+        getCurrentActivityMutations
     ],
     strict: debug,
     middlewares: debug ? [Vuex.createLogger()] : []

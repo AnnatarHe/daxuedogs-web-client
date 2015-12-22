@@ -12,7 +12,7 @@
             <p class="desc">{{ detail.desc | cutdesc }}</p>
             <div class="link-container">
                 <a v-link="{ name: 'detail', params: { id: detail.id }}"
-                    class="button-detail"
+                    class="button button-detail"
                     >
                     报名
                     <i class="fa fa-arrow-right"></i>
@@ -24,10 +24,10 @@
 
 <script>
 
-    export default {
-        props: ['detail'],
+export default {
+    props: ['detail'],
 
-    }
+}
 
 </script>
 
@@ -71,12 +71,7 @@
             align-items center
             justify-content center
             border-radius .5rem
-            a
-                padding .5rem 1rem
-                color #fff
-                transition all .35s ease
-                background-color deeppink
-                &:hover
-                    box-shadow .2rem .2rem .8rem #888
-
+a.button-detail
+    color #fff
+    background-color deeppink
 </style>

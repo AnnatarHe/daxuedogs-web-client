@@ -13,7 +13,7 @@ describe('loadingComponent', () => {
     describe('created', () => {
         let loadingComponent = require('../src/commonComponents/loading.vue')
         it('this component should return the created function', () => {
-            expect(loadingComponent.created).to.be.a('function')
+            expect(typeof loadingComponent.created).to.be.a('function')
         })
 
     })

@@ -1,13 +1,16 @@
-# Summary
+## Summary
+
+It's just a dev version. not stable! 
 
 A web client for daxuedogs
 
-# Vue
-
 Built with Vue, Vue-resource, Vue-router, Vuex
 
-A SPA
+## Todos
 
-# License
+- [ ] multi-user sign
+- [ ] Admin page
+
+## License
 
 MIT

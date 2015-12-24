@@ -25,10 +25,6 @@ module.exports = {
                 exclude: /node_modules|app\/dist|vue-router\/|vue-loader\/vue-hot-reload-api\//,
                 loader: 'babel',
             },
-            //{
-            //    test: /\.styl$/,
-            //    loader: 'style-loader!css-loader!autoprefixer-loader!stylus-loader'
-            //},
             {
                 test: /\.png$/,
                 loader: "url-loader",

@@ -6,8 +6,8 @@
 
 'use strict';
 
-let path = require('path');
-let webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
@@ -21,42 +21,38 @@ module.exports = {
                 loader: 'vue'
             },
             {
-                test: /\.js?$/,
+                test: /\.js$/,
                 exclude: /node_modules|app\/dist|vue-router\/|vue-loader\/vue-hot-reload-api\//,
                 loader: 'babel'
-            },
-
-            {
-                test: /\.styl$/,
-                loader: 'style-loader!css-loader!autoprefixer-loader!stylus-loader'
             },
             {
                 test: /\.png$/,
                 loader: "url-loader",
                 exclude: /node_modules/,
-                query: {mimetype: "image/png"}
+                query: { mimetype: "image/png" }
             }
         ]
     },
     babel: {
         presets: ['es2015'],
         plugins: ['transform-runtime']
-    }
-    ,
+    },
     output: {
         path: path.resolve(__dirname, 'app/dist'),
         publicPath: 'app/dist/',
         filename: '[name].bundle.[hash].js'
-    }
-    ,
+    },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"production"'
+            }
+        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             }
         }),
         new webpack.optimize.OccurenceOrderPlugin()
-
     ]
 }
-;

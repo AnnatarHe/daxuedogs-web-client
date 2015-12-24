@@ -8,7 +8,8 @@
 
 import {
     GET_ACTIVIES_FROM_SERVER,
-    GET_CURRENT_ACTIVITY
+    GET_CURRENT_ACTIVITY,
+    SEND_USERINFO_TO_ACTIVITY
 } from '../mutation-types'
 
 export const activitiesInitialData = []

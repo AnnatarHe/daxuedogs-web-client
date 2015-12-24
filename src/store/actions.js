@@ -29,6 +29,11 @@ export const sendAlertMessage = ({ dispatch, state }, alterMessageObj) => {
     dispatch(types.SEND_MESSAGE_AT_ALERT, alterMessageObj)
 }
 
+// loading 状态调整。不同于上面的那个哦
+export const toggleLoadingModal = ({ dispatch, state }) => {
+    dispatch(types.LOADING_STATE)
+}
+
 // 设置头部的标题
 export const setHeaderTitle = ({ dispatch, state }, title) => {
     dispatch(types.SET_HEADER_TITLE, title)

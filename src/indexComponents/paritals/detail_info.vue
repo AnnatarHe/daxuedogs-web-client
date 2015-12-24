@@ -64,11 +64,7 @@ export default {
         flex 2
         flex-direction column
         .extra
-            .label
-                background-color lighten($header-color, 10%)
-                padding .5rem 1rem
-                color #fff
-            .label, span
+            span
                 display inline-block
             .end-time
                 padding 1rem 0

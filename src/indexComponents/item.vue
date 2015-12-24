@@ -58,12 +58,6 @@ export default {
             font-size 1.5rem
             margin-bottom .8rem
         .extra
-            .label
-                display inline-block
-                background-color lighten($header-color, 20%)
-                color darken(#888, 10%)
-                padding .5rem 1rem
-                border-radius .5rem
             span
                 display inline-block
         .link-container

@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import Store from '../../store/index'
 
 export default {
 
@@ -114,6 +115,9 @@ export default {
     },
     methods: {
         submitForm() {
+            if (this.email_err || this.number_err || this.phone_err || this.name_err) {
+                return
+            }
             let remoteSaveServer = ''
             let userInfo = {
                 'student_id': this.student_id,
@@ -125,11 +129,15 @@ export default {
                 'activity_id': this.id,
                 'phone': this.phone
             }
+            Store.actions.toggleLoadingModal()
 
             this.$http.save(remoteSaveServer, userInfo)
                 .then((res)=> {
-                    console.log(res);
+                    Store.actions.toggleLoadingModal()
+                    swal('报名成功', res, 'success')
                 }, (err) => {
+                    Store.actions.toggleLoadingModal()
+                    swal('未知错误', '未知错误，请稍后重试','error')
                     console.log(err);
                 })
         },
@@ -140,33 +148,32 @@ export default {
             this.gender = 'female'
         },
         checkEmail() {
-            if (this.email.length < 10) {
+            if (this.email.length < 3) {
                 this.email_err = true
             }else {
                 this.email_err = false
             }
         },
         checkNumber() {
-            // it don't work
-            console.log(this.student_id)
-            if (this.student_id.length < 7 && this.student_id > 10) {
+            let _student_id = this.student_id.toString().length
+            if ( _student_id < 7 || _student_id > 10) {
                 this.number_err = true
-            }else {
-                this.number_err = false
+                return
             }
+            // 远端校验用户是否注册的逻辑
         },
         checkName() {
             let nameLen = this.name.trim().length
-            if (nameLen < 2 && nameLen > 10) {
+            if (nameLen < 2 || nameLen > 10) {
                 this.name_err = true
             }else {
                 this.name_err = false
             }
         },
         checkPhone() {
-            let phoneLen = this.phone.length
-            let pattern = /^[1,3,4,5,7,8][0-9]{10}$/g
-            if ( !pattern.test(phoneLen) ) {
+            let _phone = this.phone
+            let pattern = /[1,3,4,5,7,8][0-9]{10}$/g
+            if ( ! pattern.test(_phone) ) {
                 this.phone_err = true
             }else {
                 this.phone_err = false

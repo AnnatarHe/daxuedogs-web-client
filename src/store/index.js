@@ -19,7 +19,9 @@ import {
     messageInitialInfo,
     setMessageMutations,
     headerInitialTitle,
-    setHeaderTitleMutations
+    setHeaderTitleMutations,
+    loadingInitialState,
+    toggleLoadingStateMutations
 } from './modules/common'
 import * as actions from './actions'
 
@@ -34,7 +36,8 @@ export default new Vuex.Store({
         activities: activitiesInitialData,
         alertMsg: messageInitialInfo,
         headerTitle: headerInitialTitle,
-        currentActivity: currentInitialActivity
+        currentActivity: currentInitialActivity,
+        loading: loadingInitialState
     },
     actions,
     mutations: [
@@ -42,7 +45,8 @@ export default new Vuex.Store({
         getActiviesMutations,
         setMessageMutations,
         setHeaderTitleMutations,
-        getCurrentActivityMutations
+        getCurrentActivityMutations,
+        toggleLoadingStateMutations
     ],
     strict: debug,
     middlewares: debug ? [Vuex.createLogger()] : []

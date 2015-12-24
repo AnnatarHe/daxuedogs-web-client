@@ -11,8 +11,8 @@
                     transition-mode="out-in"
             ></router-view>
         </div>
-
         <footer-component></footer-component>
+
     </div>
 </template>
 
@@ -22,7 +22,7 @@
         components: {
             HeaderComponent: require('../commonComponents/header.vue'),
             FooterComponent: require('../commonComponents/footer.vue'),
-            AlertComponent: require('../commonComponents/alert.vue')
+            AlertComponent: require('../commonComponents/alert.vue'),
         },
         computed: {
 

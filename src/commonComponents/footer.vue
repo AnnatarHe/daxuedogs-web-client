@@ -3,9 +3,7 @@
     <footer class="footer">
         <div class="copyright">
             <i class="fa fa-copyright"></i>
-            <span>
-                daxuedogs.com
-            </span>
+            <span>daxuedogs.com</span>
         </div>
         <div class="contact">
             <a href="#">

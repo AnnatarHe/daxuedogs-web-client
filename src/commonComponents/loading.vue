@@ -9,7 +9,9 @@
 
 <script>
 export default {
-    created() {}
+    created() {
+        console.log('Hello world');
+    }
 
 }
 </script>

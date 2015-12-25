@@ -13,7 +13,6 @@
         </div>
         <form-component :id="id"></form-component>
 
-        <loading-component></loading-component>
     </div>
 
 </template>
@@ -38,7 +37,6 @@ export default {
     components: {
         'detailInfoComponent': require('./paritals/detail_info.vue'),
         'formComponent': require('./paritals/form.vue'),
-        'loadingComponent': require('../commonComponents/loading.vue')
     }
 }
 </script>

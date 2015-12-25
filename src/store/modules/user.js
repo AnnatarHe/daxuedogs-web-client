@@ -5,7 +5,7 @@ import {
     USER_CURRENT_STATE
  } from '../mutation-types'
 
-export const userInitialModalState = true
+export const userInitialModalState = false
 
 // 1 === 普通同学登陆
 // 2 === 普通同学注册

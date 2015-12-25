@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import Store from '../../store/index'
 export default {
     components: {
         'errorComponent': require('../form_error_alert.vue')
@@ -53,6 +54,7 @@ export default {
             }
             this.password_err = false
             // 提交表单登陆
+            // Store.actions.toggleLoadingModal()
             let _info = {
                 username: this.username,
                 password: this.password

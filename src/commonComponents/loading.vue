@@ -1,5 +1,5 @@
 <template>
-    <div class="mask" v-show="loading" transition="fade">
+    <div class="mask" v-show="loading" transition="scale">
         <div class="loading">
             <i class="fa fa-refresh fa-spin"></i>
             <span class="text">正在加载...</span>

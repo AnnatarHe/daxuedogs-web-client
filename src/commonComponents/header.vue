@@ -20,6 +20,8 @@
     <user-modal-component
     >
      </user-modal-component>
+
+     <loading-component></loading-component>
 </template>
 
 <script>
@@ -28,7 +30,8 @@
     export default {
         components: {
             'navbarComponent': require('./navbar.vue'),
-            'userModalComponent': require('./userParitals/indexModal.vue')
+            'userModalComponent': require('./userParitals/indexModal.vue'),
+            'loadingComponent': require('./loading.vue')
         },
         computed: {
             navStatus() {

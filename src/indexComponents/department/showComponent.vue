@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="department-container">
         department
     </div>
 </template>
@@ -13,4 +13,8 @@ export default {
 <style lang="stylus">
 @import '../../stylus/variable'
 
+.department-container
+    flex-design()
+    media-width()
+    margin 0 auto
 </style>

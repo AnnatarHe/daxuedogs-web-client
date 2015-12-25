@@ -1,0 +1,30 @@
+// 表单控件
+.form-container
+    flex-design()
+    media-width()
+    
+.form
+    flex-design()
+    flex-direction column
+    align-items center
+    justify-content center
+    .field
+        flex-design()
+        flex-direction row
+        margin 1rem 0
+        width 80%
+        &.error
+            border 1px solid red
+
+        input
+            padding 1rem
+            width 100%
+            font-size 1.1rem
+            border none
+            border-radius .3rem
+            &:focus
+                border-bottom 1px solid #888
+                outline none
+    .submit-field
+        justify-content center
+        align-items center

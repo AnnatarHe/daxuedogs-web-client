@@ -149,12 +149,7 @@ export default {
         opacity 1
     .altTrans-enter, .altTrans-leave
         opacity 0
-.fade-transition
-    transition all .35s ease
-    height 13rem
-.fade-enter, .fade-leave
-    height 0
-    opacity 0
+
 
 
 </style>

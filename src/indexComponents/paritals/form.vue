@@ -94,7 +94,7 @@ export default {
 
     props:['id'],
     components: {
-        'formErrorAlert': require('./form_error_alert.vue')
+        'formErrorAlert': require('../../commonComponents/form_error_alert.vue')
     },
 
     data() {

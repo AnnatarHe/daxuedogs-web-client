@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../../stylus/variable'
+@import '../stylus/variable'
 
 .form-err-alert
     display flex

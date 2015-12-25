@@ -13,6 +13,14 @@ export default function(router) {
         '/activity/:id': {
             name: 'detail',
             component: require('./detailComponent.vue')
+        },
+        '/department': {
+            name: 'departmentList',
+            component: require('./department/showComponent.vue')
+        },
+        '/department/:did': {
+            name: 'departmentDetail',
+            component: require('./department/departmentDetailComponent.vue')
         }
 
     })

@@ -23,6 +23,12 @@ import {
     loadingInitialState,
     toggleLoadingStateMutations
 } from './modules/common'
+import {
+    userInitialModalState,
+    userInitialCurrentAtModal,
+    toggleUserModalMutations,
+    switchUserCurrentAtModalMutations
+} from './modules/user'
 import * as actions from './actions'
 
 Vue.use(Vuex)
@@ -37,7 +43,9 @@ export default new Vuex.Store({
         alertMsg: messageInitialInfo,
         headerTitle: headerInitialTitle,
         currentActivity: currentInitialActivity,
-        loading: loadingInitialState
+        loading: loadingInitialState,
+        userModalState: userInitialModalState,
+        userCurrentAtModal: userInitialCurrentAtModal
     },
     actions,
     mutations: [
@@ -46,7 +54,9 @@ export default new Vuex.Store({
         setMessageMutations,
         setHeaderTitleMutations,
         getCurrentActivityMutations,
-        toggleLoadingStateMutations
+        toggleLoadingStateMutations,
+        toggleUserModalMutations,
+        switchUserCurrentAtModalMutations
     ],
     strict: debug,
     middlewares: debug ? [Vuex.createLogger()] : []

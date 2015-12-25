@@ -10,20 +10,25 @@
         </div>
 
         <div class="right login-container">
-
+            <div class="more-button" @click="toggleModal">
+                <i class="fa fa-user fa-lg"></i>
+            </div>
         </div>
     </header>
 
     <navbar-component v-show="navStatus" transition="expand"></navbar-component>
+    <user-modal-component
+    >
+     </user-modal-component>
 </template>
 
 <script>
     import Store from '../store/index'
-    import navbarComponent from './navbar.vue'
 
     export default {
         components: {
-            navbarComponent
+            'navbarComponent': require('./navbar.vue'),
+            'userModalComponent': require('./userParitals/indexModal.vue')
         },
         computed: {
             navStatus() {
@@ -35,6 +40,7 @@
         },
         methods: {
             toggleNav: Store.actions.toggleNavbar,
+            toggleModal: Store.actions.toggleUserModal
         }
     }
 </script>
@@ -42,39 +48,30 @@
 <style lang='stylus'>
 @import '../stylus/variable'
 
-    .header
+.header
+    flex-design()
+    background-color $header-color
+    .left-icon
         flex-design()
-        background-color $header-color
-        .left-icon
-            flex-design()
-            .more-button
-                padding 1rem
-                color #fff
-                transition all .35s ease-in
-                &:hover
-                    background-color #fff
-                    color #000
-        .status
-            flex-design()
-            align-items center
-            justify-content center
-            h2
-                margin 0
-                color #fff
+        align-items center
+        justify-content flex-start
+    .more-button
+        padding 1rem
+        color #fff
+        transition all .35s ease-in
+        &:hover
+            background-color #fff
+            color #000
+    .status
+        flex-design()
+        align-items center
+        justify-content center
+        h2
+            margin 0
+            color #fff
 
-        .login-container
-            flex-design()
-            padding 1rem
-    // 切换效果的动画
-    .expand-transition
-      transition all .3s ease
-      height 10rem
-      background-color $header-color
-      overflow hidden
+    .login-container
+        flex-design()
+        justify-content flex-end
 
-    /* .expand-enter 定义进入的开始状态 */
-    /* .expand-leave 定义离开的结束状态 */
-    .expand-enter, .expand-leave
-      height 0
-      opacity 0
 </style>

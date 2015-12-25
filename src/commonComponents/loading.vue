@@ -1,11 +1,10 @@
 <template>
-    <div class="loading-mask" v-show="loading" transition="fade">
+    <div class="mask" v-show="loading" transition="fade">
         <div class="loading">
             <i class="fa fa-refresh fa-spin"></i>
             <span class="text">正在加载...</span>
         </div>
     </div>
-
 
 </template>
 
@@ -24,16 +23,6 @@ export default {
 
 <style lang='stylus'>
 @import "../stylus/variable";
-
-.loading-mask
-    display table
-    position fixed
-    top 0
-    left 0
-    width 100%
-    height 100%
-    background-color rgba(0,0,0, .5)
-    z-index 99999
 
 .loading
     flex-design()

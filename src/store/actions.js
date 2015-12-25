@@ -48,3 +48,11 @@ export const getCurrentActivity = ({ dispatch, state }, _this, id) => {
         console.log('error at get a activity')
     })
 }
+
+export const toggleUserModal = ({ dispatch, state }) => {
+    dispatch(types.USER_MODAL_STATE)
+}
+
+export const switchUserCurrentAtModal = ({ dispatch, state}, nextId) => {
+    dispatch(types.USER_CURRENT_STATE, nextId)
+}

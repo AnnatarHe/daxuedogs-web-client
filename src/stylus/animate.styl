@@ -1,0 +1,29 @@
+
+// 切换效果的动画
+.expand-transition
+  transition all .3s ease
+  height 10rem
+  background-color $header-color
+  overflow hidden
+
+/* .expand-enter 定义进入的开始状态 */
+/* .expand-leave 定义离开的结束状态 */
+.expand-enter, .expand-leave
+  height 0
+  opacity 0
+
+// 不知道哪里会用的动画
+.fade-transition
+    transition all .35s ease
+    height 13rem
+.fade-enter, .fade-leave
+    height 0
+    opacity 0
+
+// 从放大变缩小， 用户登入框会用到
+.scale-transition
+    transition all .35s ease
+
+.scale-enter, .scale-leave
+    opacity 0
+    transform scale(1.1)

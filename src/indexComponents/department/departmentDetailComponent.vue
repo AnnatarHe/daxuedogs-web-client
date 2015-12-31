@@ -1,6 +1,7 @@
 <template>
     <div>
         detail page
+        adf
     </div>
 </template>
 

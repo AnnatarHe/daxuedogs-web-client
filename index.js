@@ -34,6 +34,8 @@ router.beforeEach(function({to, next}) {
             break;
         case 'detail':
             Store.actions.setHeaderTitle('详情页')
+        case 'departmentList':
+            Store.actions.setHeaderTitle('部门列表')
         default:
             break;
     }

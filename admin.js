@@ -9,20 +9,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Resource from 'vue-resource'
-import App from './src/indexComponents/App.vue'
-import IndexComponent from './src/indexComponents/indexComponent.vue'
+import App from './src/adminComponents/App.vue'
+import routerMap from './src/adminComponents/router'
 
 Vue.use(Router)
 Vue.use(Resource)
 
-let router = new Router()
+const router = new Router()
 
-router.map({
-    'index': {
-        component: IndexComponent
-    }
-})
+routerMap(router)
 
 router.start(App, '#admin_page')
 
-console.log('hello world');
+console.log('hello worldfdf');

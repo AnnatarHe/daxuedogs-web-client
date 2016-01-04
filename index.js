@@ -20,7 +20,7 @@ Vue.use(Resource)
 Vue.filter('cuttime', Filters.cutTime)
 Vue.filter('cutdesc', Filters.cutDesc)
 
-let router = new Router()
+const router = new Router()
 
 RouterMap(router)
 

@@ -8,7 +8,7 @@
 
 export const TOGGLE_NAV = 'TOGGLE_NAV'
 
-/* 通用部分 */
+/* 通用部分 **/
 // 发送提示框，暂时没有用
 export const SEND_MESSAGE_AT_ALERT = 'SEND_MESSAGE_AT_ALERT'
 // 设置头部的名字

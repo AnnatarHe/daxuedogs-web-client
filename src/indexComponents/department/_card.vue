@@ -14,25 +14,23 @@
                 <h6>{{ carddata.title }}</h6>
             </div>
             <!-- <div class="desc-content"></div> -->
-            <div class="sociality">
-                <a class="social" :href="carddata.weiboLink">
-                    <i class="fa fa-weibo fa-lg"></i>
-                </a>
-                <a class="social" :href="carddata.weixinLink">
-                    <i class="fa fa-weixin fa-lg"></i>
-                </a>
-                <a class="social" :href="carddata.qqLink">
-                    <i class="fa fa-qq fa-lg"></i>
-                </a>
-            </div>
+            <sociality-component
+                :weibo-link="carddata.weiboLink"
+                :weixin-link="carddata.weixinLink"
+                :qq-link="carddata.qqLink"
+            ></sociality-component>
         </div>
 
     </div>
 </template>
 
 <script>
+// 各个部门的介绍卡片
 export default {
-    props: ['carddata']
+    props: ['carddata'],
+    components: {
+        socialityComponent: require('../../commonComponents/sociality_links.vue')
+    }
 }
 </script>
 
@@ -45,6 +43,10 @@ export default {
     margin 1rem
     .img
         cursor pointer
+
+        img
+            height $image-size-at-department-card
+            width $image-size-at-department-card
     .desc
         display flex
         align-items center
@@ -53,20 +55,6 @@ export default {
 
         h6
             margin 1rem 0
-    .sociality
-        flex-design()
-        flex-direction row
-        width 100%
-        border-top 1px solid #888
-        .social
-            flex-design()
-            align-items center
-            justify-content center
-            padding 1rem 0
-            transition all .35s ease
-            color #000
-            &:hover
-                background-color #666
-                color #fff
+
 
 </style>

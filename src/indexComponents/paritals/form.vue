@@ -88,6 +88,7 @@
 </template>
 
 <script>
+// 进入报名节目下面的表单
 import Store from '../../store/index'
 
 export default {

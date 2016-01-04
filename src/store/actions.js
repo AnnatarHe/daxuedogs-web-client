@@ -14,9 +14,9 @@ export const toggleNav = types.TOGGLE_NAV
 export const toggleNavbar = ({ dispatch, state }) => {
     dispatch(types.TOGGLE_NAV)
 }
-
-export const getActivitiesDataFromServer = ({ dispatch, state }, _this) => {
-    _this.$http.get(remoteAddress.getActivitiesData)
+// 从服务端获取活动列表
+export const getActivitiesDataFromServer = ({ dispatch, state }, cxt) => {
+    cxt.$http.get(remoteAddress.getActivitiesData)
         .then((res) => {
             dispatch(types.GET_ACTIVIES_FROM_SERVER, JSON.parse(res.response))
         }, (res) => {
@@ -55,4 +55,15 @@ export const toggleUserModal = ({ dispatch, state }) => {
 
 export const switchUserCurrentAtModal = ({ dispatch, state}, nextId) => {
     dispatch(types.USER_CURRENT_STATE, nextId)
+}
+
+// 从服务器上获取部门列表信息
+export const getAllDepartmentFromServer = ({ dispatch, state }) => {
+    // 抓取数据
+    // dispatch(types.GET_ALL_DEPARTMENT_FROM_SERVER, data)
+}
+
+export const getOneDepartmentFromServer = ({ dispatch, state }, did) => {
+    // 抓取数据
+    // dispatch(types.GET_ONE_DEPARTMENT_FROM_SERVER, data)
 }

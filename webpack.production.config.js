@@ -8,6 +8,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -24,6 +25,11 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules|app\/dist|vue-router\/|vue-loader\/vue-hot-reload-api\//,
                 loader: 'babel'
+            },
+            {
+                test: /\.styl$/,
+                exclude: /node_modules/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader!stylus-loader')
             },
             {
                 test: /\.png$/,
@@ -43,16 +49,24 @@ module.exports = {
         filename: '[name].bundle.[hash].js'
     },
     plugins: [
+        // 打包
+        new webpack.optimize.CommonsChunkPlugin('vendors.[hash].js'),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"production"'
             }
         }),
+        // 压缩，丑化
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             }
         }),
-        new webpack.optimize.OccurenceOrderPlugin()
+        new webpack.optimize.OccurenceOrderPlugin(),
+        // 分解css文件，减少文件大小
+        new ExtractTextPlugin('style.[hash].css', {
+            allChunks: true,
+            disabled: false
+        })
     ]
 }

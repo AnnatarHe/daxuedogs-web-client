@@ -32,6 +32,7 @@
 </template>
 
 <script>
+// 进入报名界面上面的那一个信息模块
 import Store from '../../store/index'
 
 export default {

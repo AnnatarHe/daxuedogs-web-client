@@ -4,11 +4,15 @@
             <span>活动</span>
         </div>
         <ul class="admin__navbar__list admin__navbar__list--with-grey">
-            <li><a href="#">
+            <li><a
+                    v-link="{name: 'all', activeClass: 'active'}"
+                >
                 <i class="fa fa-chevron-up fa-lg"></i>
                 活动纵览
             </a></li>
-            <li><a href="#">
+            <li><a
+                    v-link="{name: 'activityAdd', activeClass: 'active'}"
+                >
                 <i class="fa fa-child fa-lg"></i>
                 添加活动
             </a></li>

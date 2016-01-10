@@ -4,15 +4,15 @@
         <span>学生会</span>
     </div>
     <ul class="admin__navbar__list admin__navbar__list--with-grey">
-        <li><a href="#">
+        <li><a
+                v-link="{name: 'schoolsAdd', activeClass: 'active'}"
+            >
             <i class="fa fa-hospital-o fa-lg"></i>
             添加学校
         </a></li>
-        <li><a href="#">
-            <i class="fa fa-bank fa-lg"></i>
-            添加院系
-        </a></li>
-        <li><a href="#">
+        <li><a
+                v-link="{name: 'branchAdd', activeClass: 'active'}"
+            >
             <i class="fa fa-code-fork fa-lg"></i>
             添加部门
         </a></li>

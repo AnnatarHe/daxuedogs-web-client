@@ -1,7 +1,7 @@
 <template>
     <div class="admin__header">
         <div class="admin__header__left">
-            <a v-link="{name:'main'}"
+            <a v-link="{name:'summary'}"
                 class="admin__header__title"
                 >
                 <i class="fa fa-home fa-lg"></i>
@@ -58,8 +58,5 @@ export default {
                 margin-right 1rem
             &:hover
                 background-color $header-second-color
-
-
-
 
 </style>

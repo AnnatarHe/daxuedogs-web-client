@@ -8,7 +8,8 @@
                     <span>总览</span>
                 </div>
                 <ul class="admin__navbar__list admin__navbar__list--with-grey">
-                    <li><a href="#">
+                    <li><a
+                            v-link="{name: 'summary', activeClass: 'active'}">
                         <i class="fa fa-chevron-up fa-lg"></i>
                         所有数据
                     </a></li>
@@ -16,12 +17,12 @@
             </li>
 
             <hr class="admin__navbar__hr">
-
+            <!-- 活动部分的活动链接 -->
             <activity-controller>
             </activity-controller>
 
             <hr class="admin__navbar__hr">
-
+            <!-- 部门部门的控制链接 -->
             <department-controller>
             </department-controller>
 
@@ -105,7 +106,7 @@ export default {
             &:hover
                 background-color #e3e3e3
                 color #000
-            .active
+            &.active
                 background-color #e3e3e3
                 color #000
 

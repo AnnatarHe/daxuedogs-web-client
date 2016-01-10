@@ -2,14 +2,14 @@
 .form-container
     flex-design()
     media-width()
-    
+
 .form
     flex-design()
     flex-direction column
     align-items center
     justify-content center
     .field
-        flex-design()
+        display flex
         flex-direction row
         margin 1rem 0
         width 80%
@@ -25,6 +25,22 @@
             &:focus
                 border-bottom 1px solid #888
                 outline none
+        .textarea
+            display flex
+            padding 1rem
+            width 100%
+            font-size 1.1rem
+            border none
+            border-radius .3rem
+            resize none
+            &:focus
+                outline none
+        .inline-double
+            flex-direction column
+            .form-label
+                flex-design()
+            .form-option
+                flex-design()
     .submit-field
         justify-content center
         align-items center

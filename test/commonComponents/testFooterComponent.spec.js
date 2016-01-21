@@ -1,6 +1,6 @@
 'use strict';
 import Vue from 'vue'
-const testFooterComponent = require('../src/commonComponents/footer.vue')
+const testFooterComponent = require('../../src/commonComponents/footer.vue')
 
 // 测试首页第一个链接是指向首页的
 describe('navbarComponent', () => {

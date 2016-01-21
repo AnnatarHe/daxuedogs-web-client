@@ -3,6 +3,7 @@
 </template>
 
 <script>
+// 这里可以调用Canvas展示数据图表
 export default {
 
 }

@@ -6,7 +6,7 @@
 
 'use strict';
 import Vue from 'vue'
-const testLoadingComponent = require('../src/commonComponents/loading.vue')
+const testLoadingComponent = require('../../src/commonComponents/loading.vue')
 
 describe('loadingComponent', () => {
     describe('context should be loading... be Chinese', () => {

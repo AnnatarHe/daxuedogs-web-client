@@ -9,7 +9,7 @@
                 <router-view
                         class="view"
                         keep-alive
-                        transition
+                        transition="scale"
                         transition-mode="out-in"
                 ></router-view>
             </div>
@@ -41,7 +41,6 @@ export default {
 .view
     display flex
     flex 3
-    opactity: 1
     transition: all .35s ease-in
     padding 1rem
 

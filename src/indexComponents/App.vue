@@ -7,7 +7,7 @@
             <router-view
                     class="view"
                     keep-alive
-                    transition
+                    transition="scale"
                     transition-mode="out-in"
             ></router-view>
         </div>

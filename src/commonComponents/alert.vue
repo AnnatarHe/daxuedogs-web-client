@@ -149,7 +149,4 @@ export default {
         opacity 1
     .altTrans-enter, .altTrans-leave
         opacity 0
-
-
-
 </style>

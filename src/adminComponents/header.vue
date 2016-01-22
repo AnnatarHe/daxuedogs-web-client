@@ -35,10 +35,13 @@ export default {
     &__left
         flex-design()
         align-items flex-start
-        padding 1rem
+        // padding 1rem
         .admin__header__title
+            display flex
+            align-items center
+            justify-content center
             font-size 1.2rem
-            padding 1rem
+            padding 1.2rem
             &:hover
                 background-color $header-second-color
     &__right

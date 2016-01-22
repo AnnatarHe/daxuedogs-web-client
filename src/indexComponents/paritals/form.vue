@@ -55,7 +55,7 @@
             </div>
 
             <div class="field major-field">
-                <select v-model="major_id">
+                <select v-model="major_id" class="select select--white">
                     <option value="0" selected>选择你的专业</option>
                     <option value="1">电子商务</option>
                     <option value="2">电子商务</option>
@@ -224,13 +224,6 @@ export default {
             &:hover
                 background-color $header-color
                 color #fff
-    .major-field
-        select
-            width 100%
-            font-size 1.1rem
-            border-radius .3rem
-            padding 1rem
-            color #888
-            border none
+
 
 </style>

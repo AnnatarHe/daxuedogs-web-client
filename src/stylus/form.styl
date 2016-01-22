@@ -35,12 +35,25 @@
             resize none
             &:focus
                 outline none
-        .inline-double
-            flex-direction column
+        &.inline-double
+            display flex
+            flex-direction row
             .form-label
                 flex-design()
             .form-option
                 flex-design()
     .submit-field
+        display flex
         justify-content center
         align-items center
+        width 100%
+
+    .select
+        width 100%
+        font-size 1.1rem
+        border-radius .3rem
+        padding 1rem
+        color #888
+        border none
+        &--white
+            background-color #fff

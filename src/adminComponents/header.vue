@@ -21,6 +21,9 @@
 
 <script>
 export default {
+    components: {
+        'modalComponent': require('../commonComponents/modal.vue')
+    }
 
 }
 </script>

@@ -14,7 +14,7 @@
                     <i class="fa fa-edit fa-lg"></i>
                     编辑
                 </button>
-                <button class="button button--none button--danger" type="button">
+                <button class="button button--none button--danger" type="button" disabled="disabled">
                     <i class="fa fa-close fa-lg"></i>
                     删除
                 </button>

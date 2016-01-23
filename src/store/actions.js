@@ -67,3 +67,29 @@ export const getOneDepartmentFromServer = ({ dispatch, state }, did) => {
     // 抓取数据
     // dispatch(types.GET_ONE_DEPARTMENT_FROM_SERVER, data)
 }
+
+// 切换modal层是否显示
+export const toggleModalState = ({ dispatch, state }) => {
+    dispatch(types.MODAL_STATE)
+}
+
+// 设置正在编辑的类型
+// 1. email
+// 2. activity
+// 3. department
+export const setModalType = ({ dispatch, state}, type) => {
+    dispatch(types.MODAL_TYPE, type)
+}
+
+// 设置正在编辑的id
+export const setEditingActivityId = ({ dispatch, state}, id) => {
+    dispatch(types.EDITING_ACTIVITY_ID, id)
+}
+
+export const setEditingDepartmentId = ({ dispatch, state }, id) => {
+    dispatch(types.EDITING_DEPARTMENT_ID, id)
+}
+
+export const setEditingEmailMessageInitialId = ({ dispatch, state}, id) => {
+    dispatch(types.EDITING_EMAIL_MESSAGE_ID, id)
+}

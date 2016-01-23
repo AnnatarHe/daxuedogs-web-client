@@ -16,6 +16,12 @@ export const SET_HEADER_TITLE = 'SET_HEADER_TITLE'
 // 加载中的状态
 export const LOADING_STATE = 'LOADING_STATE'
 
+/* modal 层样式 */
+// modal 层类型
+export const MODAL_TYPE = 'MODAL_TYPE'
+// modal 层状态
+export const MODAL_STATE = 'MODAL_STATE'
+
 // 用户登陆框的挡板情况
 export const USER_MODAL_STATE = 'USER_MODAL_STATE'
 // 用户的当前状态
@@ -31,3 +37,11 @@ export const GET_CURRENT_ACTIVITY = 'GET_CURRENT_ACTIVITY'
 export const GET_ALL_DEPARTMENT_FROM_SERVER = 'GET_ALL_DEPARTMENT_FROM_SERVER'
 
 export const GET_ONE_DEPARTMENT_FROM_SERVER = 'GET_ONE_DEPARTMENT_FROM_SERVER'
+
+/* 编辑中的状态 */
+// 正在修改的活动的id
+export const EDITING_ACTIVITY_ID = 'EDITING_ACTIVITY_ID'
+// 正在修改的部门的id
+export const EDITING_DEPARTMENT_ID = 'EDITING_DEPARTMENT_ID'
+// 正在写的邮件的对应活动的id
+export const EDITING_EMAIL_MESSAGE_ID = 'EDITING_EMAIL_MESSAGE_ID'

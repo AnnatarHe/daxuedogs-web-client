@@ -76,7 +76,8 @@ export const toggleModalState = ({ dispatch, state }) => {
 // 设置正在编辑的类型
 // 1. email
 // 2. activity
-// 3. department
+// 3. branch
+// 4. account
 export const setModalType = ({ dispatch, state}, type) => {
     dispatch(types.MODAL_TYPE, type)
 }
@@ -92,4 +93,14 @@ export const setEditingDepartmentId = ({ dispatch, state }, id) => {
 
 export const setEditingEmailMessageId = ({ dispatch, state}, id) => {
     dispatch(types.EDITING_EMAIL_MESSAGE_ID, id)
+}
+
+export const setViewingAccountId = ({ dispatch, state}, id) => {
+    dispatch(types.VIEWING_ACCOUNT_ID, id)
+}
+
+// 登陆学生会的信息 auth
+export const getAuthObj = ({ dispatch, state }) => {
+    // 通过ajax 获取用户权限信息
+    // dispatch(type.AUTH_OBJ, data)
 }

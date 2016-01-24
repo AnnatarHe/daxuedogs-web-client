@@ -27,6 +27,10 @@
             </department-controller>
 
             <hr class="admin__navbar__hr">
+            <account-controller>
+            </account-controller>
+
+            <hr class="admin__navbar__hr">
 
             <li class="admin__navbar__lists__item">
                 <ul class="admin__navbar__buttons">
@@ -46,7 +50,8 @@
 export default {
     components: {
         'activityController': require('./navbars/activities.vue'),
-        'departmentController': require('./navbars/department.vue')
+        'departmentController': require('./navbars/department.vue'),
+        'accountController': require('./navbars/account.vue')
     }
 
 }

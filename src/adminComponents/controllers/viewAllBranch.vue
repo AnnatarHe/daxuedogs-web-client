@@ -50,13 +50,6 @@ export default {
             Store.actions.setModalType('branch')
             Store.actions.setEditingDepartmentId(1)
         }
-    },
-    computed: {
-        showBranchModal() {
-            let modalState = Store.state.modalState
-            let modalType = Store.state.modalType
-            return modalState == true && modalType == 'branch' ? true : false
-        }
     }
 }
 </script>

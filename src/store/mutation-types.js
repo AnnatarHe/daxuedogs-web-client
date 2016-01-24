@@ -45,3 +45,8 @@ export const EDITING_ACTIVITY_ID = 'EDITING_ACTIVITY_ID'
 export const EDITING_DEPARTMENT_ID = 'EDITING_DEPARTMENT_ID'
 // 正在写的邮件的对应活动的id
 export const EDITING_EMAIL_MESSAGE_ID = 'EDITING_EMAIL_MESSAGE_ID'
+
+export const VIEWING_ACCOUNT_ID = 'VIEWING_ACCOUNT_ID'
+
+/* 登陆用户信息，包含权限等级 */
+export const AUTH_OBJ = 'AUTH_OBJ'

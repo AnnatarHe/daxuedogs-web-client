@@ -34,6 +34,14 @@ export default function(router) {
         '/schools/add': {
             name: 'schoolsAdd',
             component: require('./controllers/addSchool.vue')
+        },
+        '/account': {
+            name: 'account',
+            component: require('./controllers/viewAccount.vue')
+        },
+        '/account/add': {
+            name: 'accountAdd',
+            component: require('./controllers/addAccount.vue')
         }
 
     })

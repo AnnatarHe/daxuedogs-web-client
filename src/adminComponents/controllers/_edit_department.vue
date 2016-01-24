@@ -33,6 +33,7 @@
 
 </template>
 <script>
+import Store from '../../store/index'
 export default {
     ready() {
         // 抓取数据
@@ -56,7 +57,7 @@ export default {
         showBranchModal() {
             let modalState = Store.state.modalState
             let modalType = Store.state.modalType
-            return modalState == true && modalType == 'department' ? true : false
+            return modalState == true && modalType == 'branch' ? true : false
         }
     }
 }

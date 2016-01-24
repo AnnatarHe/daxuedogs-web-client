@@ -4,7 +4,7 @@
         <input type="text" placeholder="活动名" v-model="title">
     </div>
     <div class="field">
-        <input type="file" id="fileUploader" class="file">
+        <input type="file" id="fileUploader" class="input__file--green">
     </div>
     <div class="field">
         <textarea class="textarea" rows="8" placeholder="请输入简介" v-model="desc"></textarea>
@@ -138,6 +138,5 @@ export default {
             background-color $alert-font-success-color
             &.active
                 background-color $header-color
-    .file
-        background-color $lite-green
+
 </style>

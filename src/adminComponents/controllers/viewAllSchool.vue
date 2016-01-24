@@ -10,7 +10,7 @@
             <td>1</td>
             <td>hello</td>
             <td>
-                <button class="button button--none button--primary" type="button">
+                <button class="button button--none button--primary" type="button" disabled="disabled">
                     <i class="fa fa-edit fa-lg"></i>
                     编辑
                 </button>

@@ -12,7 +12,9 @@
             <td>foo</td>
             <td>1</td>
             <td>
-                <button class="button button--none button--primary">
+                <button class="button button--none button--primary"
+                    @click="editActivity"
+                >
                     <i class="fa fa-edit fa-lg"></i>
                     编辑
                 </button>
@@ -28,12 +30,24 @@
             </td>
         </tr>
     </table>
+    <edit-activity-component></edit-activity-component>
 </div>
 </template>
 
 <script>
+import Store from '../../store/index'
 // 这里可以调用Canvas展示数据图表
 export default {
+    components: {
+        'editActivityComponent': require('./_edit_activity.vue')
+    },
+    methods: {
+        editActivity() {
+            Store.actions.toggleModalState()
+            Store.actions.setModalType('activity')
+            Store.actions.setEditingActivityId(1)
+        }
+    }
 
 }
 </script>

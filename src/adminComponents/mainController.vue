@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// 这里调用Canvas
 export default {
 
 }

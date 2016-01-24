@@ -18,7 +18,9 @@
                     <i class="fa fa-edit fa-lg"></i>
                     编辑
                 </button>
-                <button class="button button--none button--success">
+                <button class="button button--none button--success"
+                    @click="sendEmail"
+                >
                     <i class="fa fa-envelope-square fa-lg"></i>
                     邮件
                 </button>
@@ -31,6 +33,7 @@
         </tr>
     </table>
     <edit-activity-component></edit-activity-component>
+    <send-email-component></send-email-component>
 </div>
 </template>
 
@@ -39,13 +42,27 @@ import Store from '../../store/index'
 // 这里可以调用Canvas展示数据图表
 export default {
     components: {
-        'editActivityComponent': require('./_edit_activity.vue')
+        'editActivityComponent': require('./_edit_activity.vue'),
+        'sendEmailComponent': require('./_edit_email.vue')
     },
     methods: {
         editActivity() {
             Store.actions.toggleModalState()
             Store.actions.setModalType('activity')
             Store.actions.setEditingActivityId(1)
+        },
+        sendEmail() {
+            Store.actions.toggleModalState()
+            Store.actions.setModalType('email')
+            Store.actions.setEditingEmailMessageId(1)
+        }
+    },
+    computed: {
+        isActivity() {
+            return Store.state.modalType == 'activity' ? true : false
+        },
+        isEmailSender() {
+            return Store.state.modalType == 'email' ? true : false
         }
     }
 

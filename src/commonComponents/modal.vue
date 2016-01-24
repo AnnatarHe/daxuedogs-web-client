@@ -1,5 +1,5 @@
 <template>
-    <div class="mask" v-show="modalState" transition="scale">
+    <div class="mask" transition="scale">
         <div class="modal modal--default">
             <div class="modal__head">
                 <h3>{{ head }}</h3>

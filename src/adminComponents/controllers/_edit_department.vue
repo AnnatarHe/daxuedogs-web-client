@@ -1,6 +1,6 @@
 <template>
 
-    <modal-component head="编辑部门信息">
+    <modal-component head="编辑部门信息" v-show="showBranchModal">
         <form class="form">
             <div class="field">
                 <input type="text" placeholder="部门名称" v-model="title">
@@ -51,6 +51,13 @@ export default {
     },
     components: {
         'modalComponent': require('../../commonComponents/modal.vue')
+    },
+    computed: {
+        showBranchModal() {
+            let modalState = Store.state.modalState
+            let modalType = Store.state.modalType
+            return modalState == true && modalType == 'department' ? true : false
+        }
     }
 }
 </script>

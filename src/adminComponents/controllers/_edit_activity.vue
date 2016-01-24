@@ -1,5 +1,5 @@
 <template>
-    <modal-component head="编辑活动信息">
+    <modal-component head="编辑活动信息" v-show="showActivityModal">
         <form class="form modal__form--not-justify" @submit.prevent="updateActivity">
             <div class="field">
                 <input type="text" placeholder="活动名" v-model="title">
@@ -56,6 +56,7 @@
 
 </template>
 <script>
+import Store from '../../store/index'
 export default {
     /**
      * 从服务器获取数据，然后赋值
@@ -112,6 +113,17 @@ export default {
         toggleDorOptions() {
             this.dormitory = ! this.dormitory
             console.log('toggle dormitory options')
+        }
+    },
+    computed: {
+        showActivityModal() {
+            let modalState = Store.state.modalState
+            let modalType = Store.state.modalType
+            if (modalState == true && modalType == 'activity') {
+                return true
+            }else {
+                return false
+            }
         }
     }
 }

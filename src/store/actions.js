@@ -90,6 +90,6 @@ export const setEditingDepartmentId = ({ dispatch, state }, id) => {
     dispatch(types.EDITING_DEPARTMENT_ID, id)
 }
 
-export const setEditingEmailMessageInitialId = ({ dispatch, state}, id) => {
+export const setEditingEmailMessageId = ({ dispatch, state}, id) => {
     dispatch(types.EDITING_EMAIL_MESSAGE_ID, id)
 }

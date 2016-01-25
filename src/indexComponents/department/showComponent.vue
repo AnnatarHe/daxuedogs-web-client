@@ -14,6 +14,14 @@ export default {
     components: {
         'cardComponent': require('./_card.vue')
     },
+    ready() {
+        this.$http.get(`http://dev.iamhele.com/api/branchLists`)
+            .then( res => {
+                this.cardsData = res.data.data
+                console.log(res.data.data)
+            })
+            .catch( err => console.log(err))
+    },
     data() {
         let _cardData = [
             {

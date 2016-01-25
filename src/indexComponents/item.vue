@@ -6,7 +6,7 @@
         <div class="content">
             <h5 class="title">{{ detail.title }}</h5>
             <div class="extra">
-                <div class="label">{{ detail.registed }}</div>
+                <div class="label">{{ registed }}</div>
                 <span>人报名</span>
             </div>
             <p class="desc">{{ detail.desc | cutdesc }}</p>
@@ -26,6 +26,20 @@
 
 export default {
     props: ['detail'],
+    data() {
+        return {
+            registed: 0
+        }
+    },
+
+    ready() {
+        this.$http.get(`http://dev.iamhele.com/api/registed/${this.detail.id}`)
+            .then( res => {
+                this.registed = res.data
+            }, err => {
+                console.log(err)
+            })
+    }
 
 }
 

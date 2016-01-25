@@ -1,27 +1,27 @@
 <template>
     <div class="detail-info">
         <div class="image">
-            <img :src="info.hero" alt="">
+            <img :src="detailObj.hero" alt="">
         </div>
         <div class="content">
             <h2 class="title">
-                {{ info.title }}
+                {{ detailObj.title }}
             </h2>
 
             <div class="desc">
-                <p>{{ info.desc }}</p>
+                <p>{{ detailObj.desc }}</p>
             </div>
 
             <div class="extra">
                 <div class="registed">
                     <div class="label">
-                        {{ info.registed }}
+                        {{ registed }}
                     </div>
                     <span>人已报名</span>
                 </div>
-                <div class="end-time">{{ info.endTime }}</div>
+                <div class="end-time">{{ detailObj.endTime }}</div>
                 <div class="attach">
-                    <a :href="info.id" class="attach-button button">
+                    <a :href="downloadPath" class="attach-button button">
                         <i class="fa fa-download fa-lg"></i>
                         <span>获取附件</span>
                     </a>
@@ -36,7 +36,26 @@
 import Store from '../../store/index'
 
 export default {
-    props: ['info']
+    props: ['id'],
+    data() {
+        return {
+            registed: 0,
+            downloadPath: `http://dev.iamhele.com/api/attach/${this.id}`,
+            detailObj: {},
+            loaded: false
+        }
+    },
+    ready() {
+        this.$http.get(`http://dev.iamhele.com/api/activity/${this.id}`)
+            .then(res => {
+                this.detailObj = res.data
+                this.loaded = true
+            })
+            .catch(err => console.log(err))
+        this.$http.get(`http://dev.iamhele.com/api/registed/${this.id}`)
+            .then(res => this.registed = res.data)
+            .catch(err => console.log(err))
+    }
 
 }
 </script>

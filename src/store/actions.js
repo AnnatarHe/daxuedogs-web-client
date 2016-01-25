@@ -40,8 +40,7 @@ export const setHeaderTitle = ({ dispatch, state }, title) => {
 }
 
 export const getCurrentActivity = ({ dispatch, state }, _this, id) => {
-    // _this.$http.get(remoteAddress.getOneActivityAddress + '/' + id)
-    _this.$http.get(remoteAddress.getOneActivityAddress)
+    _this.$http.get(`http://dev.iamhele.com/api/activity/${id}`)
     .then((res) => {
         dispatch(types.GET_CURRENT_ACTIVITY, JSON.parse(res.response))
     }, (res) => {

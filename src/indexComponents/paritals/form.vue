@@ -40,7 +40,7 @@
                 >
                 </form-error-alert>
             </div>
-            <div class="field gender-field">
+            <div class="field gender-field" v-if="needGender">
                 <label for="gender">性别</label>
                 <div class="gender-options">
                     <div :class="{'active': gender == 'male' ? true : false}" @click="selectMale">
@@ -52,6 +52,9 @@
                         <span>女孩子</span>
                     </div>
                 </div>
+            </div>
+            <div class="field" v-if="needDormitory">
+                <input type="text" placeholder="宿舍号" v-model="dormitory">
             </div>
 
             <div class="field major-field">
@@ -93,11 +96,19 @@ import Store from '../../store/index'
 
 export default {
 
+
     props:['id'],
     components: {
         'formErrorAlert': require('../../commonComponents/form_error_alert.vue')
     },
-
+    ready() {
+        this.$http.get(`http://dev.iamhele.com/api/activity/${this.id}`)
+            .then(res => {
+                this.needDormitory = res.data.needDormitory
+                this.needGender = res.data.needGender
+            })
+            .catch(err => console.log(err))
+    },
     data() {
         return {
             'student_id': '',
@@ -111,7 +122,9 @@ export default {
             'email_err': false,
             'number_err': false,
             'phone_err': false,
-            'name_err': false
+            'name_err': false,
+            'needGender': false,
+            'needDormitory': false
         }
     },
     methods: {

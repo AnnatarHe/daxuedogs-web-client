@@ -1,7 +1,6 @@
 <template>
-
     <div class="detail-component">
-        <detail-info-component :info="info"></detail-info-component>
+        <detail-info-component :id="id" :detailObj="detailObj"></detail-info-component>
         <div class="div">
 
             <div class="description">
@@ -12,28 +11,24 @@
 
         </div>
         <form-component :id="id"></form-component>
-
     </div>
-
 </template>
 <script>
 import Store from '../store/index'
 export default {
     data() {
         return {
-            'id': this.$route.params.id
+            'id': this.$route.params.id,
+            'detailObj': {},
+            'loaded': false
         }
     },
     ready() {
+        
     },
-    computed: {
-        info() {
-            return Store.state.currentActivity
-        }
-    },
-    created() {
-        Store.actions.getCurrentActivity(this, this.id)
-    },
+    // created() {
+    //     Store.actions.getCurrentActivity(this, this.id)
+    // },
     components: {
         'detailInfoComponent': require('./paritals/detail_info.vue'),
         'formComponent': require('./paritals/form.vue'),
@@ -42,7 +37,6 @@ export default {
 </script>
 <style lang="stylus">
 @import '../stylus/variable'
-
 .div
     flex-design()
     media-width()

@@ -15,9 +15,9 @@
             </div>
             <!-- <div class="desc-content"></div> -->
             <sociality-component
-                :weibo-link="carddata.weiboLink"
-                :weixin-link="carddata.weixinLink"
-                :qq-link="carddata.qqLink"
+                :weibo-link="carddata.weibo_link"
+                :weixin-link="carddata.weixin_link"
+                :qq-link="carddata.qq_link"
             ></sociality-component>
         </div>
 

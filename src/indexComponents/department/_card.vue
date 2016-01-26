@@ -43,7 +43,6 @@ export default {
     margin 1rem
     .img
         cursor pointer
-
         img
             height $image-size-at-department-card
             width $image-size-at-department-card
@@ -55,6 +54,4 @@ export default {
 
         h6
             margin 1rem 0
-
-
 </style>

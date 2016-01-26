@@ -6,7 +6,6 @@
         <div class="container">
             <router-view
                     class="view"
-                    keep-alive
                     transition="scale"
                     transition-mode="out-in"
             ></router-view>

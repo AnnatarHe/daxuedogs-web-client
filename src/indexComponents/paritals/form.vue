@@ -60,9 +60,7 @@
             <div class="field major-field">
                 <select v-model="major_id" class="select select--white">
                     <option value="0" selected>选择你的专业</option>
-                    <option value="1">电子商务</option>
-                    <option value="2">电子商务</option>
-                    <option value="3">电子商务</option>
+                    <option v-for="major in majors" value="{{ major.id }}">{{ major.name }}</option>
                 </select>
             </div>
 
@@ -108,6 +106,12 @@ export default {
                 this.needGender = res.data.needGender
             })
             .catch(err => console.log(err))
+        this.$http.get('http://dev.iamhele.com/api/majors')
+            .then( res => {
+                console.log(res.data)
+                this.majors = res.data
+            })
+            .catch( err => console.log(err))
     },
     data() {
         return {
@@ -117,14 +121,15 @@ export default {
             'gender': '',
             'dormitory': '',
             'activity_id': '',
-            'major_id': '',
+            'major_id': 0,
             'phone': '',
             'email_err': false,
             'number_err': false,
             'phone_err': false,
             'name_err': false,
             'needGender': false,
-            'needDormitory': false
+            'needDormitory': false,
+            'majors': []
         }
     },
     methods: {
@@ -145,10 +150,18 @@ export default {
             }
             Store.actions.toggleLoadingModal()
 
-            this.$http.save(remoteSaveServer, userInfo)
+            this.$http.post(`http://dev.iamhele.com/api/activity/${this.id}/register`, userInfo)
                 .then((res)=> {
                     Store.actions.toggleLoadingModal()
-                    swal('报名成功', res, 'success')
+                    switch (res.data.status) {
+                        case 200:
+                            swal('报名成功', '报名成功', 'success')
+                            break
+                        case 429:
+                            swal('报名失败', '之前已经报名过了，不用报名了', 'error')
+                        default:
+                            break
+                    }
                 }, (err) => {
                     Store.actions.toggleLoadingModal()
                     swal('未知错误', '未知错误，请稍后重试','error')
@@ -173,8 +186,17 @@ export default {
             if ( _student_id < 7 || _student_id > 10) {
                 this.number_err = true
                 return
+            }else {
+                this.number_err = false
             }
             // 远端校验用户是否注册的逻辑
+            this.$http.get(`http://dev.iamhele.com/api/userRegisted/${this.id}/${this.student_id}`)
+                .then( res => {
+                    if (res.data.status == 429) {
+                        swal('拒绝', '已经报名过了，不用报名啦', 'info')
+                    }
+                })
+                .catch( err => console.log(err))
         },
         checkName() {
             let nameLen = this.name.trim().length

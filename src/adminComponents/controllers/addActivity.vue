@@ -85,13 +85,13 @@ export default {
             let formData = new FormData()
             let file = document.querySelector('#fileUploader').files[0]
             formData.append('title', this.title)
-            formData.append('hero', file)
+            formData.append('file', file)
             formData.append('desc', this.desc)
             formData.append('endtime', this.endtime)
             formData.append('needGender', this.gender)
             formData.append('needDormitory', this.dormitory)
 
-            this.$http.save('/url', formData)
+            this.$http.post('http://dev.iamhele.com/api/activity/create', formData)
                 .then(res => {
                     console.log(res)
                 })

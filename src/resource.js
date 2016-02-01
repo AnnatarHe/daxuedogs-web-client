@@ -2,7 +2,6 @@
 
 // 假数据
 export const remoteAddress = {
-    // https://daxuedogs.com/api/activities
-    'getActivitiesData': '../fake/activities.json',
+    'getActivitiesData': 'http://dev.iamhele.com/api/activityLists',
     'getOneActivityAddress': '../fake/activity.json'
 }

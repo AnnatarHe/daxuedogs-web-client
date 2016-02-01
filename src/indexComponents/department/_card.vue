@@ -15,9 +15,9 @@
             </div>
             <!-- <div class="desc-content"></div> -->
             <sociality-component
-                :weibo-link="carddata.weiboLink"
-                :weixin-link="carddata.weixinLink"
-                :qq-link="carddata.qqLink"
+                :weibo-link="carddata.weibo_link"
+                :weixin-link="carddata.weixin_link"
+                :qq-link="carddata.qq_link"
             ></sociality-component>
         </div>
 
@@ -43,7 +43,6 @@ export default {
     margin 1rem
     .img
         cursor pointer
-
         img
             height $image-size-at-department-card
             width $image-size-at-department-card
@@ -55,6 +54,4 @@ export default {
 
         h6
             margin 1rem 0
-
-
 </style>

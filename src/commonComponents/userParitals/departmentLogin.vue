@@ -1,10 +1,14 @@
 <template>
     <div>
-        <form @submit.prevent="login" class="form department-login-form">
+        <form class="form department-login-form"
+            method="POST"
+            action="/auth/login"
+        >
             <div class="field">
                 <input
                     type="text"
                     placeholder="用户名"
+                    name="email"
                     v-model="username"
                 />
                 <error-component v-show="username_err"></error-component>
@@ -13,6 +17,7 @@
                 <input
                     type="password"
                     placeholder="密码"
+                    name="password"
                     v-model="password"
                 />
                 <error-component v-show="password_err"></error-component>
@@ -56,10 +61,9 @@ export default {
             // 提交表单登陆
             // Store.actions.toggleLoadingModal()
             let _info = {
-                username: this.username,
+                email: this.username,
                 password: this.password
             }
-            console.log(_info)
         }
     }
 

@@ -1,10 +1,10 @@
 <template>
     <div class="department__detail">
         <div class="department__detail__title">
-            <h3>Foo</h3>
+            <h3>{{ branch.name }}</h3>
         </div>
         <div class="department__detail__desc">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>{{ branch.desc }}</p>
         </div>
         <div class="department__detail__jobs">
             <table class="department__table">
@@ -18,18 +18,18 @@
                         介绍
                     </td>
                 </tr>
-                <tr>
-                    <td>foo</td>
-                    <td>bar</td>
+                <tr v-for="job in jobs">
+                    <td>{{ job.name }}</td>
+                    <td>{{ job.desc }}</td>
                 </tr>
 
             </table>
         </div>
 
         <sociality-component
-                weibo-link="javascript:;"
-                weixin-link="javascript:;"
-                qq-link="javascript:;"
+                :weibo-link="branch.weibo_link"
+                :weixin-link="branch.weixin_link"
+                :qq-link="branch.qq_link"
         >
         </sociality-component>
     </div>
@@ -42,13 +42,24 @@ export default {
         socialityComponent: require('../../commonComponents/sociality_links.vue')
     },
     data() {
-        const did = this.$route.params.did
+        let did = this.$route.params.did
         return {
-            did
+            did,
+            branch: {},
+            jobs: {}
         }
     },
     ready() {
-        // 从远端获取数据, 都准备好啦~用Store就好了
+        this.$http.get(`http://dev.iamhele.com/api/branch/${this.did}`)
+            .then( res => {
+                this.branch = res.data
+            })
+            .catch( err => console.log(err))
+        this.$http.get(`http://dev.iamhele.com/api/jobs/${this.did}`)
+            .then( res => {
+                this.jobs = res.data
+            })
+            .catch( err => console.log(err))
     }
 
 }

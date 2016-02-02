@@ -42,7 +42,12 @@ export const setHeaderTitle = ({ dispatch, state }, title) => {
 export const getCurrentActivity = ({ dispatch, state }, _this, id) => {
     _this.$http.get(`http://dev.iamhele.com/api/activity/${id}`)
     .then((res) => {
-        dispatch(types.GET_CURRENT_ACTIVITY, JSON.parse(res.response))
+        dispatch(types.GET_CURRENT_ACTIVITY, res.data)
+        dispatch(types.UPDATE_ACTIVITY_TITLE, res.data.title)
+        dispatch(types.UPDATE_ACTIVITY_DESC, res.data.desc)
+        dispatch(types.UPDATE_ACTIVITY_GENDER, !! res.data.needGender)
+        dispatch(types.UPDATE_ACTIVITY_DORMITORY, !! res.data.needDormitory)
+        dispatch(types.UPDATE_ACTIVITY_ENDTIME, res.data.endtime)
     }, (res) => {
         console.log('error at get a activity')
     })
@@ -84,6 +89,7 @@ export const setModalType = ({ dispatch, state}, type) => {
 // 设置正在编辑的id
 export const setEditingActivityId = ({ dispatch, state}, id) => {
     dispatch(types.EDITING_ACTIVITY_ID, id)
+    dispatch(types.GET_ACTIVIES_FROM_SERVER, id)
 }
 
 export const setEditingDepartmentId = ({ dispatch, state }, id) => {
@@ -96,6 +102,26 @@ export const setEditingEmailMessageId = ({ dispatch, state}, id) => {
 
 export const setViewingAccountId = ({ dispatch, state}, id) => {
     dispatch(types.VIEWING_ACCOUNT_ID, id)
+}
+
+export const updateActivityTitle = ({ dispatch, state }, title) => {
+    dispatch(types.UPDATE_ACTIVITY_TITLE, title)
+}
+
+export const updateActivityDesc = ({ dispatch, state}, desc) => {
+    dispatch(types.UPDATE_ACTIVITY_DESC, desc)
+}
+
+export const updateActivityGender = ({ dispatch, state}) => {
+    dispatch(types.UPDATE_ACTIVITY_GENDER)
+}
+
+export const updateActivityDormitory = ({ dispatch, state}) => {
+    dispatch(types.UPDATE_ACTIVITY_DORMITORY)
+}
+
+export const updateActivityEndtime = ({ dispatch, state }, endtime) => {
+    dispatch(types.UPDATE_ACTIVITY_ENDTIME, endtime)
 }
 
 // 登陆学生会的信息 auth

@@ -98,8 +98,6 @@ export default {
                 .catch(err => {
                     console.log(err)
                 })
-
-
         },
         toggleGenderOptions() {
             this.gender = ! this.gender

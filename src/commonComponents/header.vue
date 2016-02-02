@@ -54,6 +54,7 @@
 .header
     flex-design()
     background-color $header-color
+    box-shadow .3rem .3rem .3rem $panel-bgc
     .left-icon
         flex-design()
         align-items center
@@ -72,6 +73,7 @@
         h2
             margin 0
             color #fff
+            text-shadow .1rem .1rem .1rem $panel-bgc
 
     .login-container
         flex-design()

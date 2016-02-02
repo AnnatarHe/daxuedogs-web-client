@@ -7,24 +7,26 @@
             <td>报名数</td>
             <td>操作</td>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>foo</td>
-            <td>1</td>
+        <tr v-for='activity in activities'>
+            <td>{{ activity.id }}</td>
+            <td>{{ activity.title }}</td>
+            <td>{{ activity.registed_count }}</td>
             <td>
                 <button class="button button--none button--primary"
-                    @click="editActivity"
+                    @click="editActivity(activity.id)"
                 >
                     <i class="fa fa-edit fa-lg"></i>
                     编辑
                 </button>
                 <button class="button button--none button--success"
-                    @click="sendEmail"
+                    @click="sendEmail(activity.id)"
                 >
                     <i class="fa fa-envelope-square fa-lg"></i>
                     邮件
                 </button>
-                <button class="button button--none button--danger">
+                <button class="button button--none button--danger"
+                    @click="deleteActivity(activity.id)"
+                >
                     <i class="fa fa-close fa-lg"></i>
                     删除
                 </button>
@@ -41,20 +43,39 @@
 import Store from '../../store/index'
 // 这里可以调用Canvas展示数据图表
 export default {
+    data() {
+        return {
+            activities: []
+        }
+    },
+    ready() {
+        this.$http.get('http://dev.iamhele.com/api/activity/lists/with/registed')
+            .then(res => {
+                console.log(res.data.data)
+                this.activities = res.data.data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
     components: {
         'editActivityComponent': require('./_edit_activity.vue'),
         'sendEmailComponent': require('./_edit_email.vue')
     },
     methods: {
-        editActivity() {
+        editActivity(id) {
             Store.actions.toggleModalState()
             Store.actions.setModalType('activity')
-            Store.actions.setEditingActivityId(1)
+            Store.actions.setEditingActivityId(id)
+            Store.actions.getCurrentActivity(this, id)
         },
-        sendEmail() {
+        sendEmail(id) {
             Store.actions.toggleModalState()
             Store.actions.setModalType('email')
-            Store.actions.setEditingEmailMessageId(1)
+            Store.actions.setEditingEmailMessageId(id)
+        },
+        deleteActivity(id) {
+            alert('但尚未实现此功能')
         }
     },
     computed: {

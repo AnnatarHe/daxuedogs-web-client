@@ -20,5 +20,3 @@ const router = new Router()
 routerMap(router)
 
 router.start(App, '#admin_page')
-
-console.log('hello worldfdf');

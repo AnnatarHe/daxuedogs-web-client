@@ -53,7 +53,12 @@ import {
     setEditingActivityIdMutations,
     setEditingDepartmentIdMutations,
     setEditingEmailMessageIdMutations,
-    setViewingAccountIdMutations
+    setViewingAccountIdMutations,
+    updateActivityTitleMutations,
+    updateActivityDescMutations,
+    updateActivityGenderMutations,
+    updateActivityDormitoryMutations,
+    updateActivityEndtimeMutations
 } from './modules/editing'
 
 import {
@@ -96,6 +101,7 @@ export default new Vuex.Store({
         editingActivityId: editingActivityInitialId,
         editingDepartmentId: editingDepartmentInitialId,
         editingEmailMessageId: editingEmailMessageInitialId,
+        updateActivity: {},
         // 管理员当前查看着哪个账户的id？
         viewingAccountId: viewingInitialAcountId,
         // 获取当前登陆用户的属性，包括权限
@@ -119,7 +125,12 @@ export default new Vuex.Store({
         setEditingDepartmentIdMutations,
         setEditingEmailMessageIdMutations,
         getAuthObjMutations,
-        setViewingAccountIdMutations
+        setViewingAccountIdMutations,
+        updateActivityTitleMutations,
+        updateActivityDescMutations,
+        updateActivityGenderMutations,
+        updateActivityDormitoryMutations,
+        updateActivityEndtimeMutations
     ],
     strict: debug,
     middlewares: debug ? [Vuex.createLogger()] : []

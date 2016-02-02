@@ -1,22 +1,21 @@
 <template>
-    <modal-component head="编辑活动信息" v-show="showActivityModal">
+    <modal-component head="编辑活动信息" v-if="showActivityModal">
         <form class="form modal__form--not-justify" @submit.prevent="updateActivity">
             <div class="field">
-                <input type="text" placeholder="活动名" v-model="title">
-
+                <input type="text" placeholder="活动名" :value="activityData.title" @input="updateTitle">
             </div>
             <div class="field">
                 <input type="file" id="fileUpdate" class="input__file--green">
             </div>
             <div class="field">
-                <textarea class="textarea" rows="8" placeholder="请输入简介" v-model="desc"></textarea>
+                <textarea class="textarea" rows="8" placeholder="请输入简介" :value="activityData.desc" @input="updateDesc"></textarea>
             </div>
             <div class="field inline-double">
                 <label class="form-label">
                     <span>需要性别选项吗</span>
                 </label>
-                <div :class="{'form-option':true, 'active': gender}" @click="toggleGenderOptions">
-                    <span v-if="gender == true">
+                <div :class="{'form-option':true, 'active': activityData.gender}" @click="updateGender">
+                    <span v-if="activityData.gender == true">
                         需要
                     </span>
                     <span v-else>
@@ -30,8 +29,8 @@
                 <label class="form-label">
                     <span>需要寝室数据吗</span>
                 </label>
-                <div :class="{'form-option':true, 'active': dormitory}" @click="toggleDorOptions">
-                    <span v-if="dormitory == true">
+                <div :class="{'form-option':true, 'active': activityData.dormitory}" @click="updateDormitory">
+                    <span v-if="activityData.dormitory == true">
                         需要
                     </span>
                     <span v-else>
@@ -41,7 +40,7 @@
             </div>
 
             <div class="field">
-                <input type="date" name="name" v-model="endtime">
+                <input type="date" name="name" :value="activityData.endtime" @input="updateEndtime">
             </div>
 
             <div class="submit-field">
@@ -56,32 +55,13 @@
 
 </template>
 <script>
-import Store from '../../store/index'
+import Vuex from '../../store/index'
 export default {
-    /**
-     * 从服务器获取数据，然后赋值
-     */
     ready() {
-        // this.$http.get('/path/for/this/resource')
-        //     .then(res => {
-        //         this.title = res.title
-        //         this.desc = res.desc
-        //         this.endtime = res.endtime
-        //         this.gender = res.needGender
-        //         this.dormitory = res.needDormitory
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     })
+        console.log(this)
     },
     data() {
-        return {
-            title: '',
-            desc: '',
-            endtime: '2015-09-15',
-            gender: false,
-            dormitory: false
-        }
+
     },
     components: {
         'modalComponent': require('../../commonComponents/modal.vue')
@@ -106,24 +86,34 @@ export default {
                     console.log(err)
                 })
         },
-        toggleGenderOptions() {
-            this.gender = ! this.gender
-            console.log('toggle gender options')
+        updateTitle(e) {
+            Vuex.actions.updateActivityTitle(e.target.value)
         },
-        toggleDorOptions() {
-            this.dormitory = ! this.dormitory
-            console.log('toggle dormitory options')
+        updateDesc(e) {
+            Vuex.actions.updateActivityDesc(e.target.value)
+        },
+        updateGender() {
+            Vuex.actions.updateActivityGender()
+        },
+        updateDormitory(e) {
+            Vuex.actions.updateActivityDormitory()
+        },
+        updateEndtime(e) {
+            Vuex.actions.updateActivityEndtime(e.target.value)
         }
     },
     computed: {
         showActivityModal() {
-            let modalState = Store.state.modalState
-            let modalType = Store.state.modalType
+            let modalState = Vuex.state.modalState
+            let modalType = Vuex.state.modalType
             if (modalState == true && modalType == 'activity') {
                 return true
             }else {
                 return false
             }
+        },
+        activityData() {
+            return Vuex.state.updateActivity
         }
     }
 }

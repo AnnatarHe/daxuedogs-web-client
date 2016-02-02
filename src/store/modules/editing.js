@@ -4,7 +4,12 @@ import {
     EDITING_ACTIVITY_ID,
     EDITING_DEPARTMENT_ID,
     EDITING_EMAIL_MESSAGE_ID,
-    VIEWING_ACCOUNT_ID
+    VIEWING_ACCOUNT_ID,
+    UPDATE_ACTIVITY_TITLE,
+    UPDATE_ACTIVITY_DESC,
+    UPDATE_ACTIVITY_GENDER,
+    UPDATE_ACTIVITY_DORMITORY,
+    UPDATE_ACTIVITY_ENDTIME
 } from '../mutation-types'
 
 export const editingActivityInitialId = 0
@@ -36,5 +41,33 @@ export const setEditingEmailMessageIdMutations = {
 export const setViewingAccountIdMutations = {
     [VIEWING_ACCOUNT_ID](state, id) {
         state.viewingAccountId = id
+    }
+}
+
+
+// 更新活动的具体信息的form 组合的东西
+export const updateActivityTitleMutations = {
+    [UPDATE_ACTIVITY_TITLE](state, title) {
+        state.updateActivity.title = title
+    }
+}
+export const updateActivityDescMutations = {
+    [UPDATE_ACTIVITY_DESC](state, desc) {
+        state.updateActivity.desc = desc
+    }
+}
+export const updateActivityGenderMutations = {
+    [UPDATE_ACTIVITY_GENDER](state) {
+        state.updateActivity.gender = ! state.updateActivity.gender
+    }
+}
+export const updateActivityDormitoryMutations = {
+    [UPDATE_ACTIVITY_DORMITORY](state) {
+        state.updateActivity.dormitory = ! state.updateActivity.dormitory
+    }
+}
+export const updateActivityEndtimeMutations = {
+    [UPDATE_ACTIVITY_ENDTIME](state, endtime) {
+        state.updateActivity.endtime = endtime
     }
 }

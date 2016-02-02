@@ -101,7 +101,13 @@ export default new Vuex.Store({
         editingActivityId: editingActivityInitialId,
         editingDepartmentId: editingDepartmentInitialId,
         editingEmailMessageId: editingEmailMessageInitialId,
-        updateActivity: {},
+        // 更新活动的form 表单
+        // 因为深度遍历在vuex中似乎并未实现，只得用这种方式了
+        updateActivityTitle: '',
+        updateActivityDesc: '',
+        updateActivityGender: false,
+        updateActivityDormitory: false,
+        updateActivityEndtime: '2016-11-11',
         // 管理员当前查看着哪个账户的id？
         viewingAccountId: viewingInitialAcountId,
         // 获取当前登陆用户的属性，包括权限

@@ -6,7 +6,9 @@
 
 'use strict';
 
-let path = require('path');
+const webpack = require('webpack')
+const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -41,5 +43,9 @@ module.exports = {
         path: path.resolve(__dirname, 'app/dist'),
         publicPath: 'app/dist/',
         filename: '[name].bundle.js'
-    }
+    },
+    plugins: [
+        // 打包
+        new webpack.optimize.CommonsChunkPlugin('vendors.js'),
+    ]
 };

@@ -2,35 +2,31 @@
     <modal-component head="编辑活动信息" v-if="showActivityModal">
         <form class="form modal__form--not-justify" @submit.prevent="updateActivity">
             <div class="field">
-                <input type="text" placeholder="活动名" :value="activityData.title" @input="updateTitle">
+                <input type="text" placeholder="活动名" :value="title" @change="updateTitle">
             </div>
             <div class="field">
-                <input type="file" id="fileUpdate" class="input__file--green">
-            </div>
-            <div class="field">
-                <textarea class="textarea" rows="8" placeholder="请输入简介" :value="activityData.desc" @input="updateDesc"></textarea>
+                <textarea class="textarea" rows="8" placeholder="请输入简介" :value="desc" @change="updateDesc"></textarea>
             </div>
             <div class="field inline-double">
                 <label class="form-label">
                     <span>需要性别选项吗</span>
                 </label>
-                <div :class="{'form-option':true, 'active': activityData.gender}" @click="updateGender">
-                    <span v-if="activityData.gender == true">
+                <div :class="{'form-option':true, 'active': gender}" @click="updateGender">
+                    <span v-if="gender == true">
                         需要
                     </span>
                     <span v-else>
                         不需要
                     </span>
                 </div>
-
 
             </div>
             <div class="field inline-double">
                 <label class="form-label">
                     <span>需要寝室数据吗</span>
                 </label>
-                <div :class="{'form-option':true, 'active': activityData.dormitory}" @click="updateDormitory">
-                    <span v-if="activityData.dormitory == true">
+                <div :class="{'form-option':true, 'active': dormitory}" @click="updateDormitory">
+                    <span v-if="dormitory == true">
                         需要
                     </span>
                     <span v-else>
@@ -40,7 +36,7 @@
             </div>
 
             <div class="field">
-                <input type="date" name="name" :value="activityData.endtime" @input="updateEndtime">
+                <input type="date" name="name" :value="endtime" @change="updateEndtime">
             </div>
 
             <div class="submit-field">
@@ -60,9 +56,6 @@ export default {
     ready() {
         console.log(this)
     },
-    data() {
-
-    },
     components: {
         'modalComponent': require('../../commonComponents/modal.vue')
     },
@@ -70,17 +63,21 @@ export default {
         updateActivity() {
             // 构造表单数据
             let formData = new FormData()
-            let file = document.querySelector('#fileUpdate').files[0]
             formData.append('title', this.title)
-            formData.append('hero', file)
             formData.append('desc', this.desc)
             formData.append('endtime', this.endtime)
             formData.append('needGender', this.gender)
             formData.append('needDormitory', this.dormitory)
 
-            this.$http.save('/url', formData)
+            let id = Vuex.state.editingActivityId
+
+            this.$http.post(`http://dev.iamhele.com/api/activity/${id}/update`, formData)
                 .then(res => {
-                    console.log(res)
+                    if (res.status == 200) {
+                        swal('更新成功', '更新成功啦，请刷新页面查看', 'success')
+                    }else {
+                        swal('错误', `出错了，请联系更高级的管理员来解决此事。statusCode: ${res.status}`, 'error')
+                    }
                 })
                 .catch(err => {
                     console.log(err)
@@ -112,8 +109,20 @@ export default {
                 return false
             }
         },
-        activityData() {
-            return Vuex.state.updateActivity
+        title() {
+            return Vuex.state.updateActivityTitle
+        },
+        desc() {
+            return Vuex.state.updateActivityDesc
+        },
+        gender() {
+            return Vuex.state.updateActivityGender
+        },
+        dormitory() {
+            return Vuex.state.updateActivityDormitory
+        },
+        endtime() {
+            return Vuex.state.updateActivityEndtime
         }
     }
 }

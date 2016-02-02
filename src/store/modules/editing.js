@@ -48,26 +48,26 @@ export const setViewingAccountIdMutations = {
 // 更新活动的具体信息的form 组合的东西
 export const updateActivityTitleMutations = {
     [UPDATE_ACTIVITY_TITLE](state, title) {
-        state.updateActivity.title = title
+        state.updateActivityTitle = title
     }
 }
 export const updateActivityDescMutations = {
     [UPDATE_ACTIVITY_DESC](state, desc) {
-        state.updateActivity.desc = desc
+        state.updateActivityDesc = desc
     }
 }
 export const updateActivityGenderMutations = {
     [UPDATE_ACTIVITY_GENDER](state) {
-        state.updateActivity.gender = ! state.updateActivity.gender
+        state.updateActivityGender = ! state.updateActivityGender
     }
 }
 export const updateActivityDormitoryMutations = {
     [UPDATE_ACTIVITY_DORMITORY](state) {
-        state.updateActivity.dormitory = ! state.updateActivity.dormitory
+        state.updateActivityDormitory = ! state.updateActivityDormitory
     }
 }
 export const updateActivityEndtimeMutations = {
     [UPDATE_ACTIVITY_ENDTIME](state, endtime) {
-        state.updateActivity.endtime = endtime
+        state.updateActivityEndtime = endtime
     }
 }

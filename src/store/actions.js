@@ -47,7 +47,7 @@ export const getCurrentActivity = ({ dispatch, state }, _this, id) => {
         dispatch(types.UPDATE_ACTIVITY_DESC, res.data.desc)
         dispatch(types.UPDATE_ACTIVITY_GENDER, !! res.data.needGender)
         dispatch(types.UPDATE_ACTIVITY_DORMITORY, !! res.data.needDormitory)
-        dispatch(types.UPDATE_ACTIVITY_ENDTIME, res.data.endtime)
+        dispatch(types.UPDATE_ACTIVITY_ENDTIME, res.data.endtime.split(' ')[0])
     }, (res) => {
         console.log('error at get a activity')
     })

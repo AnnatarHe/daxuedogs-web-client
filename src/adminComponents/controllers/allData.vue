@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import Resource from '../../resource'
 import Store from '../../store/index'
 // 这里可以调用Canvas展示数据图表
 export default {
@@ -75,7 +76,21 @@ export default {
             Store.actions.setEditingEmailMessageId(id)
         },
         deleteActivity(id) {
-            alert('但尚未实现此功能')
+            swal({
+                title: "确认删除?",
+                text: "确认删除此条活动？",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "删除！",
+                closeOnConfirm: false
+            },
+            () => {
+                this.$http.delete(`${Resource.prefix}/api/activity/${id}`)
+                    .then(() => {
+                        swal("已删除", "已删除", "success")
+                    })
+            })
         }
     },
     computed: {

@@ -7,7 +7,7 @@
 'use strict';
 
 import * as types from './mutation-types'
-import { remoteAddress } from '../resource'
+import Resource from '../resource'
 
 export const toggleNav = types.TOGGLE_NAV
 
@@ -16,7 +16,7 @@ export const toggleNavbar = ({ dispatch, state }) => {
 }
 // 从服务端获取活动列表
 export const getActivitiesDataFromServer = ({ dispatch, state }, cxt) => {
-    cxt.$http.get(remoteAddress.getActivitiesData)
+    cxt.$http.get(Resource.getActivitiesData)
         .then((res) => {
             dispatch(types.GET_ACTIVIES_FROM_SERVER, JSON.parse(res.response))
         }, (res) => {
@@ -40,7 +40,7 @@ export const setHeaderTitle = ({ dispatch, state }, title) => {
 }
 
 export const getCurrentActivity = ({ dispatch, state }, _this, id) => {
-    _this.$http.get(`http://dev.iamhele.com/api/activity/${id}`)
+    _this.$http.get(`${Resource.prefix}/api/activity/${id}`)
     .then((res) => {
         dispatch(types.GET_CURRENT_ACTIVITY, res.data)
         dispatch(types.UPDATE_ACTIVITY_TITLE, res.data.title)

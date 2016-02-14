@@ -51,6 +51,7 @@
 
 </template>
 <script>
+import Resource from '../../resource.js'
 import Vuex from '../../store/index'
 export default {
     ready() {
@@ -71,7 +72,7 @@ export default {
 
             let id = Vuex.state.editingActivityId
 
-            this.$http.post(`http://dev.iamhele.com/api/activity/${id}/update`, formData)
+            this.$http.post(`${Resource.prefix}/api/activity/${id}/update`, formData)
                 .then(res => {
                     if (res.status == 200) {
                         swal('更新成功', '更新成功啦，请刷新页面查看', 'success')

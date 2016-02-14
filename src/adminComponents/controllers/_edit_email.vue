@@ -19,6 +19,7 @@
 </modal-component>
 </template>
 <script>
+import Resource from '../../resource.js'
 import Vuex from '../../store/index'
 export default {
     data() {
@@ -37,7 +38,7 @@ export default {
                 head: this.head,
                 message: this.content
             }
-            this.$http.post(`http://dev.iamhele.com/api/activity/${id}/email`, data)
+            this.$http.post(`${Resource.prefix}/api/activity/${id}/email`, data)
                 .then( res => {
                     if (res.status == 200) {
                         swal('邮件发送中', '邮件正在发送，请耐心等候', 'success')

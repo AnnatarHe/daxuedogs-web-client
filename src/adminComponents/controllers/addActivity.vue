@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import Resource from '../../resource'
 export default {
     data() {
         // 搞定当前日期，使之适合date标签
@@ -91,7 +92,7 @@ export default {
             formData.append('needGender', this.gender)
             formData.append('needDormitory', this.dormitory)
 
-            this.$http.post('http://dev.iamhele.com/api/activity/create', formData)
+            this.$http.post(`${Resource.prefix}/api/activity/create`, formData)
                 .then(res => {
                     console.log(res)
                 })

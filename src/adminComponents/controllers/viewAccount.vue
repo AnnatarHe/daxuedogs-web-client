@@ -4,15 +4,17 @@
     <table class="table table--border">
         <tr>
             <td>id</td>
-            <td>名字</td>
+            <td>邮箱</td>
+            <td>昵称</td>
             <td>操作</td>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>学生会</td>
+        <tr v-for="user in users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.name }}</td>
             <td>
                 <button class="button button--none button--primary"
-                    @click="viewDetail"
+                    @click="viewDetail(user.id)"
                 >
                     <i class="fa fa-search fa-lg"></i>
                     查看详情
@@ -24,16 +26,36 @@
 </div>
 </template>
 <script>
+import Resource from '../../resource'
 import Store from '../../store/index'
 export default {
+    // computed: {
+    //     users() {
+    //         return []
+    //     }
+    // },
+    data() {
+        return {
+            users: []
+        }
+    },
+    ready() {
+        this.$http.get(`${Resource.prefix}/api/users/all`)
+            .then(res => {
+                this.users = res.data.data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
     components: {
         'viewAccountComponent': require('./_view_account_modal.vue')
     },
     methods: {
-        viewDetail() {
+        viewDetail(id) {
             Store.actions.toggleModalState()
             Store.actions.setModalType('account')
-            Store.actions.setViewingAccountId(1)
+            Store.actions.setViewingAccountId(id)
         }
     }
 

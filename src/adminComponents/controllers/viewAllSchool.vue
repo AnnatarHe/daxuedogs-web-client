@@ -6,9 +6,9 @@
             <td>名称</td>
             <td>操作</td>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>hello</td>
+        <tr v-for="school in schools">
+            <td>{{ school.id }}</td>
+            <td>{{ school.name }}</td>
             <td>
                 <button class="button button--none button--primary" type="button" disabled="disabled">
                     <i class="fa fa-edit fa-lg"></i>
@@ -24,6 +24,23 @@
 </div>
 </template>
 <script>
+import Resource from '../../resource'
+export default {
+    data() {
+        return {
+            schools: []
+        }
+    },
+    ready() {
+        this.$http.get(`${Resource.prefix}/api/school/all`)
+            .then(res => {
+                this.schools = res.data.data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+}
 </script>
 
 <style lang="stylus">

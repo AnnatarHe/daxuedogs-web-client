@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import Resource from '../../resource'
 export default {
     data() {
         return {
@@ -23,10 +24,18 @@ export default {
     },
     methods: {
         handleSubmit() {
-            console.log('submit school');
+            this.$http.post(`${Resource.prefix}/api/school/create`, {
+                name: this.title
+            })
+            .then(res => {
+                if (res.data.status) {
+                    swal('创建学校成功', '创建学习成功啦', 'success')
+                }else {
+                    swal(res.data.status, `${res.data.msg}`, 'error')
+                }
+            })
         }
     }
-
 }
 </script>
 

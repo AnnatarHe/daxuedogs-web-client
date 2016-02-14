@@ -7,7 +7,7 @@
             <img src="/fake/img.jpg" alt="" class="img">
         </div>
         <div class="intro">
-            <h3 class="name">学生会某某某</h3>
+            <h3 class="name">某人名字</h3>
 
             <p class="location">山东蓝翔职业技术学院</p>
 
@@ -29,15 +29,26 @@
 </modal-component>
 </template>
 <script>
-import Store from '../../store/index'
+import Resource from '../../resource'
+import Vuex from '../../store/index'
 export default {
+    data() {
+        return {
+            userInfo: {}
+        }
+    },
+    ready() {
+        // 这里得用Vuex来获取数据，还是严格单向数据流。
+        // 下个版本再加这个功能好了。哎
+        alert('抱歉，查看详细账户数据功能尚未完成，请等待版本更新')
+    },
     components: {
         'modalComponent': require('../../commonComponents/modal.vue')
     },
     computed: {
         showAccountModal() {
-            let modalState = Store.state.modalState
-            let modalType = Store.state.modalType
+            let modalState = Vuex.state.modalState
+            let modalType = Vuex.state.modalType
             return modalState == true && modalType == 'account' ? true : false
         }
     }

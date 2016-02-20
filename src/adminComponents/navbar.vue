@@ -34,7 +34,7 @@
 
             <li class="admin__navbar__lists__item">
                 <ul class="admin__navbar__buttons">
-                    <li><a href="#">
+                    <li><a href="/auth/logout">
                         <i class="fa fa-arrow-left fa-lg"></i>
                         LOGOUT
                     </a></li>

@@ -12,15 +12,20 @@
             <a href="javascript:;"
                 class="admin__header__right__user"
             >
-                <img src="/fake/img.jpg" alt="avatar" />
-                AnnatarHe
+                <img :src="auth.img || '/fake/img.jpg'" alt="avatar" />
+                {{ auth.name || 'User' }}
             </a>
         </div>
     </div>
 </template>
-
 <script>
+import Vuex from '../store/index'
 export default {
+    computed: {
+        auth() {
+            return Vuex.state.authObj
+        }
+    },
     components: {
         'modalComponent': require('../commonComponents/modal.vue')
     }

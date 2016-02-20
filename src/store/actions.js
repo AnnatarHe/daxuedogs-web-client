@@ -130,7 +130,7 @@ export const getAuthObj = ({ dispatch, state }, ctx) => {
     // 所以放心啦～安全问题妥妥的搞定了
     ctx.$http.get(`${Resource.prefix}/api/users/current`)
         .then( res => {
-            dispatch(type.AUTH_OBJ, res)
+            dispatch(types.AUTH_OBJ, res)
         })
         .catch( err => {
             console.log(err)

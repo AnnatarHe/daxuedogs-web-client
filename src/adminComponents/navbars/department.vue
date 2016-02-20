@@ -33,8 +33,17 @@
 </template>
 
 <script>
+import Vuex from '../../store/index'
 export default {
-
+    computed: {
+        /**
+         * 获取当前用户的权限状态
+         * @return {Object} 用户数据
+         */
+        auth() {
+            return Vuex.state.authObj
+        }
+    }
 }
 </script>
 

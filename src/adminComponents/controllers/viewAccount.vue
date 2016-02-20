@@ -29,11 +29,6 @@
 import Resource from '../../resource'
 import Store from '../../store/index'
 export default {
-    // computed: {
-    //     users() {
-    //         return []
-    //     }
-    // },
     data() {
         return {
             users: []

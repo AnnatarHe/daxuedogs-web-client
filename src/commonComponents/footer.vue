@@ -5,6 +5,9 @@
             <i class="fa fa-copyright"></i>
             <span>daxuedogs.com</span>
         </div>
+        <div class="versions">
+            version: v-0.4.0
+        </div>
         <div class="contact">
             <a href="#">
                 <i class="fa fa-weibo"></i>

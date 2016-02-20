@@ -40,7 +40,7 @@ export default {
     ready() {
         // 这里得用Vuex来获取数据，还是严格单向数据流。
         // 下个版本再加这个功能好了。哎
-        alert('抱歉，查看详细账户数据功能尚未完成，请等待版本更新')
+        swal('Sorry', '抱歉，查看详细账户数据功能尚未完成，请等待版本更新', 'info')
     },
     components: {
         'modalComponent': require('../../commonComponents/modal.vue')

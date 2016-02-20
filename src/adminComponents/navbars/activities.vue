@@ -22,12 +22,12 @@
 </template>
 
 <script>
-import Store from '../../store/index'
+import Vuex from '../../store/index'
 export default {
     // 这里做权限控制
     computed: {
         permission() {
-            return Store.state.authObj
+            return Vuex.state.authObj
         }
     }
 

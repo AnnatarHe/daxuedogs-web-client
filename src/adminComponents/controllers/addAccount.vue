@@ -11,7 +11,10 @@
             <td>1</td>
             <td>体育部</td>
             <td>
-                <button class="button button--none button--danger">
+                <button
+                    class="button button--none button--danger"
+                    @click="checkAccount"
+                >
                     <i class="fa fa-check fa-lg"></i>
                     审核通过
                 </button>
@@ -23,6 +26,11 @@
 </template>
 <script>
 export default {
+    methods: {
+        checkAccount() {
+            swal('抱歉', '抱歉，此功能尚在开发中，请等待版本更新', 'info')
+        }
+    }
 
 }
 </script>

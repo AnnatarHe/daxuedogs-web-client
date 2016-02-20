@@ -2,7 +2,6 @@
     <div class="detail-component">
         <detail-info-component :id="id" :detailObj="detailObj"></detail-info-component>
         <div class="div">
-
             <div class="description">
                 <span>下面报名</span>
                 <br>
@@ -10,28 +9,38 @@
             </div>
 
         </div>
-        <form-component :id="id"></form-component>
+        <form-component :id="id" v-if="team == true"></form-component>
+        <team-component :id="id" v-else></team-component>
     </div>
 </template>
 <script>
-import Store from '../store/index'
+// 这边的性能非常差，因为每次一加载这个页面就会发起两个同样的ajax请求，完全一样的
+// 因为如果在父组件（就是这里）请求，放到Vuex那边异步加载，那么两个组件就会有一段时间是没有数据的，会造成出错。
+// 这里就出现了bug，即便不渲染此组件，仍旧会出错。所以不得不分别发起同样的请求
+// 现在，我准备写第三个请求。为了获取活动是否是团队报名模块。又是一样的请求。。。。。fuck!!!
+import Vuex from '../store/index'
+import Resource from '../resource'
 export default {
+    ready() {
+        this.$http.get(`${Resource.prefix}/api/activity/${this.id}`)
+            .then( res => {
+                if (res.team == true) {
+                    this.team = res.team
+                }
+            })
+    },
     data() {
         return {
-            'id': this.$route.params.id,
-            'detailObj': {},
-            'loaded': false
+            id: this.$route.params.id,
+            detailObj: {},
+            loaded: false,
+            team: false
         }
     },
-    ready() {
-        
-    },
-    // created() {
-    //     Store.actions.getCurrentActivity(this, this.id)
-    // },
     components: {
         'detailInfoComponent': require('./paritals/detail_info.vue'),
         'formComponent': require('./paritals/form.vue'),
+        'teamComponent': require('./teams/index.vue')
     }
 }
 </script>

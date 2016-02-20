@@ -90,25 +90,22 @@
 
 <script>
 // 进入报名节目下面的表单
-import Store from '../../store/index'
-
+import Vuex from '../../store/index'
+import Resource from '../../resource'
 export default {
-
-
     props:['id'],
     components: {
         'formErrorAlert': require('../../commonComponents/form_error_alert.vue')
     },
     ready() {
-        this.$http.get(`http://dev.iamhele.com/api/activity/${this.id}`)
+        this.$http.get(`${Resource.prefix}/api/activity/${this.id}`)
             .then(res => {
                 this.needDormitory = res.data.needDormitory
                 this.needGender = res.data.needGender
             })
             .catch(err => console.log(err))
-        this.$http.get('http://dev.iamhele.com/api/majors')
+        this.$http.get(`${Resource.prefix}/api/majors`)
             .then( res => {
-                console.log(res.data)
                 this.majors = res.data
             })
             .catch( err => console.log(err))
@@ -148,11 +145,11 @@ export default {
                 'activity_id': this.id,
                 'phone': this.phone
             }
-            Store.actions.toggleLoadingModal()
+            Vuex.actions.toggleLoadingModal()
 
-            this.$http.post(`http://dev.iamhele.com/api/activity/${this.id}/register`, userInfo)
+            this.$http.post(`${Resource.prefix}/api/activity/${this.id}/register`, userInfo)
                 .then((res)=> {
-                    Store.actions.toggleLoadingModal()
+                    Vuex.actions.toggleLoadingModal()
                     switch (res.data.status) {
                         case 200:
                             swal('报名成功', '报名成功', 'success')
@@ -163,7 +160,7 @@ export default {
                             break
                     }
                 }, (err) => {
-                    Store.actions.toggleLoadingModal()
+                    Vuex.actions.toggleLoadingModal()
                     swal('未知错误', '未知错误，请稍后重试','error')
                     console.log(err);
                 })
@@ -190,7 +187,7 @@ export default {
                 this.number_err = false
             }
             // 远端校验用户是否注册的逻辑
-            this.$http.get(`http://dev.iamhele.com/api/userRegisted/${this.id}/${this.student_id}`)
+            this.$http.get(`${Resource.prefix}/api/userRegisted/${this.id}/${this.student_id}`)
                 .then( res => {
                     if (res.data.status == 429) {
                         swal('拒绝', '已经报名过了，不用报名啦', 'info')
@@ -259,6 +256,4 @@ export default {
             &:hover
                 background-color $header-color
                 color #fff
-
-
 </style>

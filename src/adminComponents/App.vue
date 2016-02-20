@@ -22,8 +22,11 @@
 </template>
 
 <script>
-
+import Vuex from '../store/index'
 export default {
+    ready() {
+        Vuex.actions.getAuthObj(this)
+    },
     components: {
         HeaderComponent: require('./header.vue'),
         FooterComponent: require('../commonComponents/footer.vue'),

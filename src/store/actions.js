@@ -125,7 +125,14 @@ export const updateActivityEndtime = ({ dispatch, state }, endtime) => {
 }
 
 // 登陆学生会的信息 auth
-export const getAuthObj = ({ dispatch, state }) => {
-    // 通过ajax 获取用户权限信息
-    // dispatch(type.AUTH_OBJ, data)
+export const getAuthObj = ({ dispatch, state }, ctx) => {
+    // 因为是从服务端获取这张页面的，服务端验证，如果验证用户没有登录是没办法获得这张页面的。
+    // 所以放心啦～安全问题妥妥的搞定了
+    ctx.$http.get(`${Resource.prefix}/api/users/current`)
+        .then( res => {
+            dispatch(type.AUTH_OBJ, res)
+        })
+        .catch( err => {
+            console.log(err)
+        })
 }

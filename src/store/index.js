@@ -13,7 +13,11 @@ import {
     activitiesInitialData,
     getActiviesMutations,
     currentInitialActivity,
-    getCurrentActivityMutations
+    getCurrentActivityMutations,
+    currentActivityInitialId,
+    setCurrentActivityIdMutations,
+    activityInitialTeams,
+    getActivityTeamsMutations,
 } from './modules/activities'
 import {
     messageInitialInfo,
@@ -83,6 +87,8 @@ export default new Vuex.Store({
         headerTitle: headerInitialTitle,
         // 当前活动
         currentActivity: currentInitialActivity,
+        currentActivityId: currentActivityInitialId,
+        activityTeams: activityInitialTeams,
         // loading 状态
         loading: loadingInitialState,
         // 用户登录的模糊框状态
@@ -120,6 +126,8 @@ export default new Vuex.Store({
         setMessageMutations,
         setHeaderTitleMutations,
         getCurrentActivityMutations,
+        setCurrentActivityIdMutations,
+        getActivityTeamsMutations,
         toggleLoadingStateMutations,
         toggleUserModalMutations,
         switchUserCurrentAtModalMutations,

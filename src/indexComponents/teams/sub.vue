@@ -2,28 +2,29 @@
     <div class="team__form--sub">
         <form @submit.prevent="handleSubmit" class="form">
             <div class="field major-field">
-                <select class="select select-white" v-model="sub.team">
+                <select class="select select-white" v-model="sub.team_id">
                     <option value="0" selected="selected">请选择你的队伍</option>
+                    <option v-for="team in teams" value="{{ team.id }}">{{ team.name }}</option>
                 </select>
             </div>
 
             <div class="field">
-                <input type="number" placeholder="学号" v-model="sub.student_id">
+                <input type="number" required placeholder="学号" v-model="sub.student_id">
             </div>
             <div class="field">
-                <input type="text" placeholder="姓名" v-model="sub.name">
+                <input type="text" required placeholder="姓名" v-model="sub.name">
             </div>
             <div class="field">
-                <input type="email" placeholder="邮箱" v-model="sub.email">
+                <input type="email" required placeholder="邮箱" v-model="sub.email">
             </div>
             <div class="field">
-                <input type="text" placeholder="寝室号码" v-model="sub.dormitory">
+                <input type="text" required placeholder="寝室号码" v-model="sub.dormitory">
             </div>
             <div class="field">
-                <input type="text" placeholder="性别" v-model="sub.gender">
+                <input type="text" required placeholder="性别" v-model="sub.gender">
             </div>
             <div class="field">
-                <input type="number" placeholder="手机号码" v-model="sub.phone">
+                <input type="number" required placeholder="手机号码" v-model="sub.phone">
             </div>
 
             <div class="field major-field">
@@ -45,6 +46,7 @@
 // 这边的majors 可以转移到Vuex那边弄，等这一版做完再重构吧
 // 对应的在 ../paritals/form.vue
 // 还有 ./sub.vue
+import Vuex from '../../store/index'
 import Resource from '../../resource'
 export default {
     data() {
@@ -62,9 +64,24 @@ export default {
     },
     methods: {
         handleSubmit() {
-            console.log('handleSubmit')
+            this.$http.post(`${Resource.prefix}/api/activity/${this.activityId}/sub`, this.sub)
+                .then( res => {
+                    if (res.status == 200) {
+                        swal('成功', '队长报名成功，请通知队员报名', 'success')
+                    }else {
+                        swal(res.status, `出错了，${res.msg}`, 'error')
+                    }
+                })
         },
 
+    },
+    computed: {
+        activityId() {
+            return Vuex.state.currentActivityId
+        },
+        teams() {
+            return Vuex.state.activityTeams
+        }
     }
 
 }

@@ -9,7 +9,7 @@
             </div>
 
         </div>
-        <form-component :id="id" v-if="team == true"></form-component>
+        <form-component :id="id" v-if="team == false"></form-component>
         <team-component :id="id" v-else></team-component>
     </div>
 </template>
@@ -24,10 +24,12 @@ export default {
     ready() {
         this.$http.get(`${Resource.prefix}/api/activity/${this.id}`)
             .then( res => {
-                if (res.team == true) {
-                    this.team = res.team
+                if (res.data.team == true) {
+                    this.team = res.data.team
                 }
             })
+        Vuex.actions.setCurrentActivityId(this.id)
+        Vuex.actions.getActivityTeams(this.$http)
     },
     data() {
         return {

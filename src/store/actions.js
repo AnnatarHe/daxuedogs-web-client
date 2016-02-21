@@ -24,6 +24,11 @@ export const getActivitiesDataFromServer = ({ dispatch, state }, cxt) => {
         })
 }
 
+// 设定当前阅读的活动ID
+export const setCurrentActivityId = ({ dispatch, state }, id) => {
+    dispatch(types.CURRENT_ACTIVITY_ID, id)
+}
+
 // 设置弹出框警告
 export const sendAlertMessage = ({ dispatch, state }, alterMessageObj) => {
     dispatch(types.SEND_MESSAGE_AT_ALERT, alterMessageObj)
@@ -134,5 +139,14 @@ export const getAuthObj = ({ dispatch, state }, ctx) => {
         })
         .catch( err => {
             console.log(err)
+        })
+}
+
+export const getActivityTeams = ({ dispatch, state }, http) => {
+    let id = state.currentActivityId
+    console.log(id)
+    http.get(`${Resource.prefix}/api/activity/${id}/teams`)
+        .then( res => {
+            dispatch(types.ACTIVITY_TEAMS, res.data)
         })
 }

@@ -16,7 +16,7 @@ export const toggleNavbar = ({ dispatch, state }) => {
 }
 // 从服务端获取活动列表
 export const getActivitiesDataFromServer = ({ dispatch, state }, cxt) => {
-    cxt.$http.get(Resource.getActivitiesData)
+    cxt.$http.get(`${Resource.prefix}/api/activityLists`)
         .then((res) => {
             dispatch(types.GET_ACTIVIES_FROM_SERVER, JSON.parse(res.response))
         }, (res) => {

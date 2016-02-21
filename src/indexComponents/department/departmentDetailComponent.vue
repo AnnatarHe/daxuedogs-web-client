@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import Resource from '../../resource'
 import Store from '../../store/index'
 export default {
     components: {
@@ -50,12 +51,12 @@ export default {
         }
     },
     ready() {
-        this.$http.get(`http://dev.iamhele.com/api/branch/${this.did}`)
+        this.$http.get(`${Resource.prefix}/api/branch/${this.did}`)
             .then( res => {
                 this.branch = res.data
             })
             .catch( err => console.log(err))
-        this.$http.get(`http://dev.iamhele.com/api/jobs/${this.did}`)
+        this.$http.get(`${Resource.prefix}/api/jobs/${this.did}`)
             .then( res => {
                 this.jobs = res.data
             })

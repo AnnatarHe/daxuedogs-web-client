@@ -10,12 +10,13 @@
 </template>
 
 <script>
+import Resource from '../../resource'
 export default {
     components: {
         'cardComponent': require('./_card.vue')
     },
     ready() {
-        this.$http.get(`http://dev.iamhele.com/api/branchLists`)
+        this.$http.get(`${Resource.prefix}/api/branchLists`)
             .then( res => {
                 this.cardsData = res.data.data
                 console.log(res.data.data)

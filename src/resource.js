@@ -2,7 +2,7 @@
 
 // 假数据
 export default {
-    prefix: 'http://dev.iamhele.com',
+    prefix: '',
     'getActivitiesData': 'http://dev.iamhele.com/api/activityLists',
     'getOneActivityAddress': '../fake/activity.json'
 }

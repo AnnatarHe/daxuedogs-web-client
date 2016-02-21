@@ -34,25 +34,26 @@
 <script>
 // 进入报名界面上面的那一个信息模块
 import Store from '../../store/index'
+import Resource from '../../resource'
 
 export default {
     props: ['id'],
     data() {
         return {
             registed: 0,
-            downloadPath: `http://dev.iamhele.com/api/attach/${this.id}`,
+            downloadPath: `${Resource.prefix}/api/attach/${this.id}`,
             detailObj: {},
             loaded: false
         }
     },
     ready() {
-        this.$http.get(`http://dev.iamhele.com/api/activity/${this.id}`)
+        this.$http.get(`${Resource.prefix}/api/activity/${this.id}`)
             .then(res => {
                 this.detailObj = res.data
                 this.loaded = true
             })
             .catch(err => console.log(err))
-        this.$http.get(`http://dev.iamhele.com/api/registed/${this.id}`)
+        this.$http.get(`${Resource.prefix}/api/registed/${this.id}`)
             .then(res => this.registed = res.data)
             .catch(err => console.log(err))
     }

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-
+import Resource from '../resource'
 export default {
     props: ['detail'],
     data() {
@@ -33,7 +33,7 @@ export default {
     },
 
     ready() {
-        this.$http.get(`http://dev.iamhele.com/api/registed/${this.detail.id}`)
+        this.$http.get(`${Resource.prefix}/api/registed/${this.detail.id}`)
             .then( res => {
                 this.registed = res.data
             }, err => {

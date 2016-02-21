@@ -29,7 +29,7 @@ module.exports = {
             {
                 test: /\.styl$/,
                 exclude: /node_modules/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader!stylus-loader')
+                loader: ExtractTextPlugin.extract('vue-style-loader', 'css-loader!autoprefixer-loader!stylus-loader')
             },
             {
                 test: /\.png$/,

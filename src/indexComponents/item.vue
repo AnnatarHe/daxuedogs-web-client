@@ -1,15 +1,15 @@
 <template>
     <div class="activity-component">
         <div class="image">
-            <img :src="detail.hero" class="img">
+            <img :src="prefix + detail.hero" class="img" alt="加载中...">
         </div>
         <div class="content">
-            <h5 class="title">{{ detail.title }}</h5>
+            <h5 class="title">{{ detail.title || 'loading' }}</h5>
             <div class="extra">
-                <div class="label">{{ registed }}</div>
+                <div class="label">{{ detail.registed_count || 'loading' }}</div>
                 <span>人报名</span>
             </div>
-            <p class="desc">{{ detail.desc | cutdesc }}</p>
+            <p class="desc">{{ detail.desc || 'loading' | cutdesc  }}</p>
             <div class="link-container">
                 <a v-link="{ name: 'detail', params: { id: detail.id }}"
                     class="button button-detail"
@@ -28,19 +28,10 @@ export default {
     props: ['detail'],
     data() {
         return {
-            registed: 0
+            registed: 0,
+            prefix: Resource.prefix
         }
-    },
-
-    ready() {
-        this.$http.get(`${Resource.prefix}/api/registed/${this.detail.id}`)
-            .then( res => {
-                this.registed = res.data
-            }, err => {
-                console.log(err)
-            })
     }
-
 }
 
 </script>
@@ -60,11 +51,8 @@ export default {
         img
             border-radius .8rem
             width $image-size-at-list
-            height $image-size-at-list
-
     .content
-        display flex
-        flex 2
+        flex-design()
         flex-direction column
         padding 1rem
         .title

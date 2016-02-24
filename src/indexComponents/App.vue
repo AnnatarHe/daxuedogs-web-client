@@ -16,17 +16,13 @@
 </template>
 
 <script>
-
-    export default {
-        components: {
-            HeaderComponent: require('../commonComponents/header.vue'),
-            FooterComponent: require('../commonComponents/footer.vue'),
-            AlertComponent: require('../commonComponents/alert.vue'),
-        },
-        computed: {
-
-        },
+export default {
+    components: {
+        HeaderComponent: require('../commonComponents/header.vue'),
+        FooterComponent: require('../commonComponents/footer.vue'),
+        AlertComponent: require('../commonComponents/alert.vue'),
     }
+}
 </script>
 
 <style lang='stylus'>

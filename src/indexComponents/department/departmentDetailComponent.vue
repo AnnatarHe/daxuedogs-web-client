@@ -1,10 +1,10 @@
 <template>
     <div class="department__detail">
         <div class="department__detail__title">
-            <h3>{{ branch.name }}</h3>
+            <h3>{{ branch.name || '加载中...' }}</h3>
         </div>
         <div class="department__detail__desc">
-            <p>{{ branch.desc }}</p>
+            <p>{{ branch.desc || '加载中...'}}</p>
         </div>
         <div class="department__detail__jobs">
             <table class="department__table">

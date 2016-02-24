@@ -11,9 +11,9 @@
 </template>
 
 <script>
-
+import Vuex from '../store/index'
 export default {
-    props: ['activities'],
+    // props: ['activities'],
     components: {
         'itemComponent': require('./item.vue'),
         'alertComponent': require('../commonComponents/alert.vue')
@@ -21,6 +21,11 @@ export default {
     data() {
         return {
             title: '活动列表'
+        }
+    },
+    computed: {
+        activities() {
+            return Vuex.state.activities
         }
     }
 }
@@ -35,7 +40,5 @@ export default {
     flex-design()
     flex-direction column
     margin 0 auto
-    // align-items center
-    // justify-content center
 
 </style>

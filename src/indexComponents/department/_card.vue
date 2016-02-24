@@ -4,14 +4,14 @@
         <div class="img">
             <img
                 :src="carddata.img"
-                alt="department hero image"
+                alt="加载中..."
                 v-link="{ name: 'departmentDetail', params: { did: carddata.id }}"
             />
         </div>
 
         <div class="desc">
             <div class="desc-title">
-                <h6>{{ carddata.title }}</h6>
+                <h6>{{ carddata.name || '加载中...' }}</h6>
             </div>
             <!-- <div class="desc-content"></div> -->
             <sociality-component

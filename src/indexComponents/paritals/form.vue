@@ -79,9 +79,9 @@
             </div>
 
             <div class="field submit-field">
-                <button type="submit" class="button submit-button">
+                <button type="submit" class="button submit-button" :disabled="refuse">
                     <i class="fa fa-check"></i>
-                    <span>提交</span>
+                    <span>{{ refuse == true ? '已过期，请等待下次报名' : '提交' }}</span>
                 </button>
             </div>
         </form>
@@ -100,6 +100,11 @@ export default {
     ready() {
         this.$http.get(`${Resource.prefix}/api/activity/${this.id}`)
             .then(res => {
+                let endtime = Date.parse(res.data.endtime)
+                // 若过期，则拒绝报名
+                if (Date.now() > endtime) {
+                    this.refuse = true
+                }
                 this.needDormitory = res.data.needDormitory
                 this.needGender = res.data.needGender
             })
@@ -126,7 +131,8 @@ export default {
             'name_err': false,
             'needGender': false,
             'needDormitory': false,
-            'majors': []
+            'majors': [],
+            'refuse': false
         }
     },
     methods: {

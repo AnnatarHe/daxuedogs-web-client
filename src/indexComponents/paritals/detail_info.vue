@@ -1,25 +1,25 @@
 <template>
     <div class="detail-info">
         <div class="image">
-            <img :src="detailObj.hero" alt="">
+            <img :src="prefix + detailObj.hero" alt="">
         </div>
         <div class="content">
             <h2 class="title">
-                {{ detailObj.title }}
+                {{ detailObj.title || '加载中...' }}
             </h2>
 
             <div class="desc">
-                <p>{{ detailObj.desc }}</p>
+                <p>{{ detailObj.desc || '加载中...' }}</p>
             </div>
 
             <div class="extra">
                 <div class="registed">
                     <div class="label">
-                        {{ registed }}
+                        {{ detailObj.registed_count || '加载中...' }}
                     </div>
                     <span>人已报名</span>
                 </div>
-                <div class="end-time">{{ detailObj.endTime }}</div>
+                <div class="end-time">{{ detailObj.endtime || '加载中...' }}</div>
                 <div class="attach">
                     <a :href="downloadPath" class="attach-button button">
                         <i class="fa fa-download fa-lg"></i>
@@ -33,29 +33,29 @@
 
 <script>
 // 进入报名界面上面的那一个信息模块
-import Store from '../../store/index'
+import Vuex from '../../store/index'
 import Resource from '../../resource'
 
 export default {
     props: ['id'],
     data() {
         return {
-            registed: 0,
             downloadPath: `${Resource.prefix}/api/attach/${this.id}`,
             detailObj: {},
-            loaded: false
+            loaded: false,
+            // 给图片加个前缀
+            prefix: Resource.prefix
         }
     },
     ready() {
-        this.$http.get(`${Resource.prefix}/api/activity/${this.id}`)
+        this.$http.get(`${Resource.prefix}/api/activity/${this.id}/withRegisted`)
             .then(res => {
                 this.detailObj = res.data
                 this.loaded = true
             })
             .catch(err => console.log(err))
-        this.$http.get(`${Resource.prefix}/api/registed/${this.id}`)
-            .then(res => this.registed = res.data)
-            .catch(err => console.log(err))
+    },
+    computed: {
     }
 
 }
@@ -79,10 +79,10 @@ export default {
         justify-content center
         img
             border-radius 1rem
+            width $image-size-at-list
     .content
         padding-left .5rem
-        display flex
-        flex 2
+        flex-design()
         flex-direction column
         .extra
             span

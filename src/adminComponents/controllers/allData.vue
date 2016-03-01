@@ -44,20 +44,8 @@ import Resource from '../../resource'
 import Store from '../../store/index'
 // 这里可以调用Canvas展示数据图表
 export default {
-    data() {
-        return {
-            activities: []
-        }
-    },
     ready() {
-        this.$http.get('http://dev.iamhele.com/api/activity/lists/with/registed')
-            .then(res => {
-                console.log(res.data.data)
-                this.activities = res.data.data
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        Store.actions.getActivitiesDataFromServer(this)
     },
     components: {
         'editActivityComponent': require('./_edit_activity.vue'),
@@ -99,6 +87,9 @@ export default {
         },
         isEmailSender() {
             return Store.state.modalType == 'email' ? true : false
+        },
+        activities() {
+            return Store.state.activities
         }
     }
 

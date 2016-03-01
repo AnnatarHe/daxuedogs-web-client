@@ -69,6 +69,11 @@ export default {
     media-width()
     margin 1rem auto
     padding 1rem
+    @media(max-width: 768px) {
+        margin .2rem auto
+        padding 0
+        flex-direction column
+    }
     box-shadow 0 0 1rem #ddd
     background-color $panel-bgc
     align-items center
@@ -93,6 +98,7 @@ export default {
     .attach
         flex-design()
         justify-content flex-end
+        margin 0 .5rem .5rem 0
         .attach-button
             color #fff
             background-color deeppink

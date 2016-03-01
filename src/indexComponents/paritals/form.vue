@@ -229,6 +229,10 @@ export default {
 .form-for-sign
     margin 1rem auto
     padding 1rem
+    @media(max-width: 768px) {
+        margin .2rem auto
+        padding 0
+    }
     background-color $panel-bgc
     box-shadow 0 0 1rem $panel-bgc
     align-items center

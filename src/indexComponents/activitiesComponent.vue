@@ -1,8 +1,7 @@
 <template>
     <div class="activities-component">
-
-        <!-- <h3>{{ title }}</h3> -->
-        <item-component
+        <loading-component v-if="activities.length == 0"></loading-component>
+        <item-component v-else
             v-for="activity in activities"
             :detail="activity"
             >
@@ -16,7 +15,8 @@ export default {
     // props: ['activities'],
     components: {
         'itemComponent': require('./item.vue'),
-        'alertComponent': require('../commonComponents/alert.vue')
+        'alertComponent': require('../commonComponents/alert.vue'),
+        'loadingComponent': require('../commonComponents/loading-inline.vue')
     },
     data() {
         return {

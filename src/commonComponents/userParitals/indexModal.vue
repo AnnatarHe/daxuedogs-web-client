@@ -103,13 +103,15 @@ export default {
 
 .modal-container
     flex-design()
-    media-width()
+    width 80%
     flex-direction column
     justify-content center
     margin 3rem auto 0 auto
     background-color #fff
     border-radius .5rem
     padding 1rem
+    @media screen and (max-width: 768px)
+        width 90%
 
     hr
         width 100%

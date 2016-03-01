@@ -1,6 +1,7 @@
 <template>
     <div class="department-container">
-        <div class="cards">
+        <loading-component v-if="cardsData.length == 0"></loading-component>
+        <div class="cards" v-else>
             <card-component
                 v-for="cardData in cardsData"
                 :carddata="cardData"
@@ -13,7 +14,8 @@
 import Resource from '../../resource'
 export default {
     components: {
-        'cardComponent': require('./_card.vue')
+        'cardComponent': require('./_card.vue'),
+        'loadingComponent': require('../../commonComponents/loading-inline.vue')
     },
     data() {
         return {

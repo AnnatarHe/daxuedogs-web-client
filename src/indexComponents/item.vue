@@ -44,6 +44,8 @@ export default {
     margin 1rem 0
     background-color #ddd
     flex-design()
+    @media (max-width: 768px)
+        flex-direction column
     .image
         flex-design()
         justify-content center

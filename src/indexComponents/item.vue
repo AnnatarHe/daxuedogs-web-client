@@ -71,5 +71,5 @@ export default {
             border-radius .5rem
 a.button-detail
     color #fff
-    background-color deeppink
+    background-color #31b0df
 </style>

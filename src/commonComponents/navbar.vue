@@ -55,6 +55,6 @@ export default {
             i.fa
                 padding:0 1rem
             &:hover
-                background-color: deeppink
+                background-color: darken($header-color, 10%)
 
 </style>

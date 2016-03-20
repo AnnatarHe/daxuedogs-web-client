@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang='stylus'>
-@import "../stylus/variable";
+@import "../stylus/variable"
 
 .loading
     flex-design()

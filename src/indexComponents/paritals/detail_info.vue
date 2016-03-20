@@ -101,6 +101,6 @@ export default {
         margin 0 .5rem .5rem 0
         .attach-button
             color #fff
-            background-color deeppink
+            background-color #FF9800
 
 </style>

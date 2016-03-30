@@ -20,9 +20,21 @@
             <div class="field">
                 <input type="text" required placeholder="寝室号码" v-model="sub.dormitory">
             </div>
-            <div class="field">
-                <input type="text" required placeholder="性别" v-model="sub.gender">
+
+            <div class="field inline-double">
+                <label class="form-label">
+                    <span>性别</span>
+                </label>
+                <div :class="{'form-option':true, 'active': sub.gender == 'male'}" @click="toggleGender">
+                    <span v-if="sub.gender == 'male'">
+                        男孩子
+                    </span>
+                    <span v-else>
+                        女孩子
+                    </span>
+                </div>
             </div>
+
             <div class="field">
                 <input type="number" required placeholder="手机号码" v-model="sub.phone">
             </div>
@@ -49,13 +61,21 @@
 import Vuex from '../../store/index'
 import Resource from '../../resource'
 export default {
+    props: ['id'],
     data() {
         return {
             sub: {},
-            majors: []
+            majors: [],
+            teams: []
         }
     },
     ready() {
+        this.$set('sub.gender', 'male')
+        this.$http.get(`${Resource.prefix}/api/activity/${this.id}/teams`)
+            .then(res => {
+                console.log(res.data)
+                this.teams = res.data
+            })
         this.$http.get(`${Resource.prefix}/api/majors`)
             .then( res => {
                 this.majors = res.data
@@ -67,12 +87,20 @@ export default {
             this.$http.post(`${Resource.prefix}/api/activity/${this.activityId}/sub`, this.sub)
                 .then( res => {
                     if (res.status == 200) {
-                        swal('成功', '队长报名成功，请通知队员报名', 'success')
+                        swal('成功', '队员报名成功，请通知其余队员报名', 'success')
                     }else {
                         swal(res.status, `出错了，${res.msg}`, 'error')
                     }
                 })
         },
+
+        toggleGender() {
+            if (this.sub.gender == 'male') {
+                this.sub.gender = 'female'
+            }else {
+                this.sub.gender = 'male'
+            }
+        }
 
     },
     computed: {

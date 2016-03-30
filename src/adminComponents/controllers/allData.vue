@@ -24,6 +24,12 @@
                     <i class="fa fa-envelope-square fa-lg"></i>
                     邮件
                 </button>
+                <a class="button button--none button--primary"
+                    href="{{ prefix + '/activity/excel/' + activity.id }}"
+                >
+                    <i class="fa fa-download fa-lg"></i>
+                    下载报名
+                </a>
                 <button class="button button--none button--danger"
                     @click="deleteActivity(activity.id)"
                 >
@@ -44,7 +50,15 @@ import Resource from '../../resource'
 import Store from '../../store/index'
 // 这里可以调用Canvas展示数据图表
 export default {
+    data() {
+        return {
+            prefix: ''
+        }
+    },
     ready() {
+
+        this.prefix = Resource.prefix
+
         Store.actions.getActivitiesDataFromServer(this)
     },
     components: {

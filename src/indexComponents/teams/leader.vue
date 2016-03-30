@@ -8,6 +8,9 @@
             <div class="field">
                 <input type="number" required placeholder="学号" v-model="team.student_id">
             </div>
+
+
+
             <div class="field">
                 <input type="text" required placeholder="姓名" v-model="team.name">
             </div>
@@ -17,11 +20,23 @@
             <div class="field">
                 <input type="text" required placeholder="寝室号码" v-model="team.dormitory">
             </div>
-            <div class="field">
-                <input type="text" required placeholder="性别" v-model="team.gender">
-            </div>
+
             <div class="field">
                 <input type="number" required placeholder="手机号码" v-model="team.phone">
+            </div>
+
+            <div class="field inline-double">
+                <label class="form-label">
+                    <span>性别</span>
+                </label>
+                <div :class="{'form-option':true, 'active': team.gender == 'male'}" @click="toggleGender">
+                    <span v-if="team.gender == 'male'">
+                        男孩子
+                    </span>
+                    <span v-else>
+                        女孩子
+                    </span>
+                </div>
             </div>
 
             <div class="field major-field">
@@ -53,6 +68,7 @@ export default {
         }
     },
     ready() {
+        this.$set('team.gender' ,'male')
         this.$http.get(`${Resource.prefix}/api/majors`)
             .then( res => {
                 this.majors = res.data
@@ -70,12 +86,20 @@ export default {
                     }
                 })
         },
-
+        toggleGender() {
+            let gender = this.team.gender
+            if (gender == 'male') {
+                this.team.gender = 'female'
+            }else {
+                this.team.gender = 'male'
+            }
+        }
     },
     computed: {
         activityId() {
             return Vuex.state.currentActivityId
         }
+
     }
 
 }

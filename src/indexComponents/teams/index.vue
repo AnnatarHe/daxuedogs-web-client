@@ -6,7 +6,7 @@
         </div>
         <div class="team__form__body">
             <leader-component v-show="state == 1"></leader-component>
-            <sub-component v-show="state == 2"></sub-component>
+            <sub-component v-show="state == 2" :id="id"></sub-component>
         </div>
     </div>
 </template>
@@ -39,7 +39,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 @import '../../stylus/variable'
 .team__form
     flex-direction column
@@ -63,5 +63,24 @@ export default {
         flex-design()
         background-color $panel-bgc
 
+    .inline-double
+        border-radius 1rem
+        background-color #eee
+        span
+            padding 1rem
+            color #fff
+
+        .form-label
+            background-color $header-color
+            justify-content center
+            align-items center
+        .form-option
+            cursor pointer
+            transition all .35s ease-in
+            align-items center
+            justify-content center
+            background-color $alert-font-success-color
+            &.active
+                background-color $header-color
 
 </style>

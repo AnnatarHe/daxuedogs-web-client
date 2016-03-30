@@ -38,6 +38,20 @@
         </div>
     </div>
 
+    <div class="field inline-double">
+        <label class="form-label">
+            <span>团队报名?</span>
+        </label>
+        <div :class="{'form-option':true, 'active': isTeam}" @click="toggleIsTeam">
+            <span v-if="isTeam == true">
+                需要
+            </span>
+            <span v-else>
+                不需要
+            </span>
+        </div>
+    </div>
+
     <div class="field">
         <input type="date" name="name" v-model="endtime">
     </div>
@@ -76,7 +90,8 @@ export default {
             desc: '',
             endtime: str,
             gender: false,
-            dormitory: false
+            dormitory: false,
+            isTeam: false
         }
     },
 
@@ -84,17 +99,23 @@ export default {
         handleSubmit() {
             // 构造表单数据
             let formData = new FormData()
-            let file = document.querySelector('#fileUploader').files[0]
+            let file = this.$el.querySelector('#fileUploader').files[0]
             formData.append('title', this.title)
             formData.append('file', file)
             formData.append('desc', this.desc)
             formData.append('endtime', this.endtime)
-            formData.append('needGender', this.gender)
-            formData.append('needDormitory', this.dormitory)
+            formData.append('needGender', this.gender ? 1 : 0)
+            formData.append('needDormitory', this.dormitory ? 1 : 0)
+            formData.append('team', this.isTeam ? 1 : 0)
 
             this.$http.post(`${Resource.prefix}/api/activity/create`, formData)
                 .then(res => {
-                    console.log(res)
+                    if (res.data.status == 200) {
+                        swal('Success', '成功添加活动', 'success')
+                    }else {
+                        swal(res.data.status, `出现未知错误: ${res.data.msg}`)
+                    }
+                    // console.log(res)
                 })
                 .catch(err => {
                     console.log(err)
@@ -107,6 +128,10 @@ export default {
         toggleDorOptions() {
             this.dormitory = ! this.dormitory
             console.log('toggle dormitory options')
+        },
+        toggleIsTeam() {
+            this.isTeam = ! this.isTeam
+            console.log('toggle is team options')
         }
     }
 

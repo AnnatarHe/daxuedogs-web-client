@@ -112,8 +112,6 @@ export default {
             }else {
                 this.emailError = true
             }
-
-
         }
     },
     computed: {

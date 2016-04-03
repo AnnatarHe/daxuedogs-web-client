@@ -52,6 +52,11 @@
         </div>
     </div>
 
+
+    <div class="field">
+        <input type="file" id="fileUploader_attach" class="input__file--green" alt="附件">
+    </div>
+
     <div class="field">
         <input type="date" name="name" v-model="endtime">
     </div>
@@ -100,6 +105,7 @@ export default {
             // 构造表单数据
             let formData = new FormData()
             let file = this.$el.querySelector('#fileUploader').files[0]
+            let attach = this.$el.querySelector('#fileUploader_attach').files[0]
             formData.append('title', this.title)
             formData.append('file', file)
             formData.append('desc', this.desc)
@@ -107,6 +113,7 @@ export default {
             formData.append('needGender', this.gender ? 1 : 0)
             formData.append('needDormitory', this.dormitory ? 1 : 0)
             formData.append('team', this.isTeam ? 1 : 0)
+            formData.append('attach', attach)
 
             this.$http.post(`${Resource.prefix}/api/activity/create`, formData)
                 .then(res => {

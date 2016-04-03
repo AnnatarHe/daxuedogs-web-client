@@ -40,7 +40,7 @@ export default {
     props: ['id'],
     data() {
         return {
-            downloadPath: `${Resource.prefix}/api/attach/${this.id}`,
+            downloadPath: '',
             detailObj: {},
             loaded: false,
             // 给图片加个前缀
@@ -50,14 +50,13 @@ export default {
     ready() {
         this.$http.get(`${Resource.prefix}/api/activity/${this.id}/withRegisted`)
             .then(res => {
+                console.log(res.data)
                 this.detailObj = res.data
+                this.downloadPath = Resource.prefix + res.data.attach
                 this.loaded = true
             })
             .catch(err => console.log(err))
-    },
-    computed: {
     }
-
 }
 </script>
 

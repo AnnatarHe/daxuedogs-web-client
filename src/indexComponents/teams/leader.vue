@@ -9,15 +9,16 @@
                 <input type="number" required placeholder="学号" v-model="team.student_id">
             </div>
 
-
-
             <div class="field">
                 <input type="text" required placeholder="姓名" v-model="team.name">
             </div>
-            <div class="field">
-                <input type="email" required placeholder="邮箱" v-model="team.email">
+            <div :class="{field: true, error: emailError}">
+                <input type="email" required placeholder="邮箱" v-model="team.email" @blur="checkEmail">
+                <form-error-alert
+                    v-show="emailError"
+                ></form-error-alert>
             </div>
-            <div class="field">
+            <div class="field" v-show="needdormitory">
                 <input type="text" required placeholder="寝室号码" v-model="team.dormitory">
             </div>
 
@@ -25,7 +26,7 @@
                 <input type="number" required placeholder="手机号码" v-model="team.phone">
             </div>
 
-            <div class="field inline-double">
+            <div class="field inline-double" v-show="needgender">
                 <label class="form-label">
                     <span>性别</span>
                 </label>
@@ -60,11 +61,20 @@
 // 还有 ./sub.vue
 import Vuex from '../../store/index'
 import Resource from '../../resource'
+import FormErrorAlert from '../../commonComponents/form_error_alert.vue'
 export default {
+    props: [
+        "needdormitory",
+        "needgender"
+    ],
+    components: {
+        FormErrorAlert
+    },
     data() {
         return {
             team: {},
-            majors: []
+            majors: [],
+            emailError: false
         }
     },
     ready() {
@@ -80,7 +90,7 @@ export default {
             this.$http.post(`${Resource.prefix}/api/activity/${this.activityId}/leader`, this.team)
                 .then( res => {
                     if (res.status == 200) {
-                        swal('成功', '队长报名成功，请通知队员报名', 'success')
+                        swal('成功', '队长报名成功，请通知其他三位队员报名', 'success')
                     }else {
                         swal(res.status, `出错了，${res.msg}`, 'error')
                     }
@@ -93,6 +103,17 @@ export default {
             }else {
                 this.team.gender = 'male'
             }
+        },
+        checkEmail(e) {
+            let val = e.target.value
+
+            if (/\w+@\w+\.\w+/g.test(val)) {
+                this.emailError = false
+            }else {
+                this.emailError = true
+            }
+
+
         }
     },
     computed: {

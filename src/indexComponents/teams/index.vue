@@ -5,19 +5,47 @@
             <a href="javascript:;" :class="{active: state == 2}" @click="pick(2)">队员报名</a>
         </div>
         <div class="team__form__body">
-            <leader-component v-show="state == 1"></leader-component>
-            <sub-component v-show="state == 2" :id="id"></sub-component>
+            <leader-component
+                v-show="state == 1"
+                :needGender="needGrender"
+                :needDormitory="needDormitory"
+                ></leader-component>
+            <sub-component
+                v-show="state == 2"
+                :id="id"
+                :needGender="needGrender"
+                :needDormitory="needDormitory"
+             ></sub-component>
         </div>
     </div>
 </template>
 
 <script>
+import Resource from '../../resource'
 export default {
     props: ['id'],
     data() {
         return {
-            state: 1
+            state: 1,
+            needGender: false,
+            needDormitory: false
         }
+    },
+    ready() {
+            this.$http.get(`${Resource.prefix}/api/activity/${this.id}`)
+                .then(res => {
+                    let data = res.data
+                    if (data.needGender == 1) {
+                        this.needGender = true
+                    }
+
+                    if (data.needDormitory == 1) {
+                        this.needDormitory = true
+                    }
+                })
+                .catch(err => {
+                    console.warn(err)
+                })
     },
     components: {
         'leaderComponent': require('./leader.vue'),

@@ -21,7 +21,7 @@
                 ></form-error-alert>
             </div>
             <div class="field" v-show="needdormitory">
-                <input type="text" required placeholder="寝室号码" v-model="sub.dormitory">
+                <input type="text" placeholder="寝室号码" v-model="sub.dormitory">
             </div>
 
             <div class="field inline-double" v-show="needgender">
@@ -44,13 +44,13 @@
 
             <div class="field major-field">
                 <select v-model="sub.major_id" class="select select--white">
-                    <option value="0" selected>选择你的专业</option>
+                    <option value="{{ majors.length > 0 ? majors[0]['id'] : 0 }}" selected>专业(选填)</option>
                     <option v-for="major in majors" value="{{ major.id }}">{{ major.name }}</option>
                 </select>
             </div>
             <div class="field submit-field">
-                <button type="submit" class="button button--submit">
-                    申请
+                <button type="submit" class="button button--submit" :disabled="! allowClick">
+                    {{ submitInfo }}
                 </button>
             </div>
         </form>
@@ -78,14 +78,15 @@ export default {
             sub: {},
             majors: [],
             teams: [],
-            emailError: false
+            emailError: false,
+            allowClick: true,
+            submitInfo: '报名'
         }
     },
     ready() {
         this.$set('sub.gender', 'male')
         this.$http.get(`${Resource.prefix}/api/activity/${this.id}/teams`)
             .then(res => {
-                console.log(res.data)
                 this.teams = res.data
             })
         this.$http.get(`${Resource.prefix}/api/majors`)
@@ -96,9 +97,13 @@ export default {
     },
     methods: {
         handleSubmit() {
+            this.allowClick = false
+            this.submitInfo = '正在处理...'
             this.$http.post(`${Resource.prefix}/api/activity/${this.activityId}/sub`, this.sub)
                 .then( res => {
                     if (res.status == 200) {
+                        this.submitInfo = '成功'
+                        this.allowClick = true
                         swal('报名成功', '加上队长只能有四个人哦', 'success')
                     }else {
                         swal(res.status, `出错了，${res.msg}`, 'error')
@@ -116,12 +121,8 @@ export default {
 
         checkEmail(e) {
             let val = e.target.value
+            this.emailError = /\w+@\w+\.\w+/g.test(val) ? false : true
 
-            if (/\w+@\w+\.\w+/g.test(val)) {
-                this.emailError = false
-            }else {
-                this.emailError = true
-            }
         }
 
     },

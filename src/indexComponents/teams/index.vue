@@ -7,13 +7,13 @@
         <div class="team__form__body">
             <leader-component
                 v-show="state == 1"
-                :needGender="needGrender"
+                :needGender="needGender"
                 :needDormitory="needDormitory"
                 ></leader-component>
             <sub-component
                 v-show="state == 2"
                 :id="id"
-                :needGender="needGrender"
+                :needGender="needGender"
                 :needDormitory="needDormitory"
              ></sub-component>
         </div>

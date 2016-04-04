@@ -6,7 +6,7 @@
             <span>daxuedogs.com</span>
         </div>
         <div class="versions">
-            version: v-0.4.1
+            version: v-0.4.4
         </div>
         <div class="contact">
             <a href="#">

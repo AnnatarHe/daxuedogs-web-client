@@ -2,7 +2,7 @@
     <div class="team__form--leader">
         <form @submit.prevent="handleSubmit" class="form">
             <div class="field">
-                <input type="text" required placeholder="队伍名称" v-model="team.team_name">
+                <input type="text" required placeholder="队伍名称" v-model="team.team_name" @blur="checkTeam">
             </div>
 
             <div class="field">
@@ -19,7 +19,7 @@
                 ></form-error-alert>
             </div>
             <div class="field" v-show="needdormitory">
-                <input type="text" required placeholder="寝室号码" v-model="team.dormitory">
+                <input type="text" placeholder="寝室号码" v-model="team.dormitory">
             </div>
 
             <div class="field">
@@ -42,13 +42,13 @@
 
             <div class="field major-field">
                 <select v-model="team.major_id" class="select select--white">
-                    <option value="0" selected>选择你的专业</option>
+                    <option value="{{ majors.length > 0 ? majors[0]['id'] : 0 }}" selected>专业(选填)</option>
                     <option v-for="major in majors" value="{{ major.id }}">{{ major.name }}</option>
                 </select>
             </div>
             <div class="field submit-field">
-                <button type="submit" class="button button--submit">
-                    申请
+                <button type="submit" class="button button--submit" :disabled="! allowClick">
+                    {{ submitInfo }}
                 </button>
             </div>
         </form>
@@ -74,7 +74,9 @@ export default {
         return {
             team: {},
             majors: [],
-            emailError: false
+            emailError: false,
+            allowClick: true,
+            submitInfo: '申请'
         }
     },
     ready() {
@@ -87,13 +89,22 @@ export default {
     },
     methods: {
         handleSubmit() {
+            this.allowClick = false
+            this.submitInfo = '正在处理...'
             this.$http.post(`${Resource.prefix}/api/activity/${this.activityId}/leader`, this.team)
                 .then( res => {
                     if (res.status == 200) {
-                        swal('成功', '队长报名成功，请通知其他三位队员报名', 'success')
+                        this.submitInfo = '报名'
+                        swal('成功', `队长报名成功，请截图本页面报名号：${res.data}`, 'success')
                     }else {
                         swal(res.status, `出错了，${res.msg}`, 'error')
                     }
+                })
+                .catch(err => {
+                    console.error(err)
+                    swal(res.status, `出错了，${err.msg}`, 'error')
+                    this.allowClick = true
+                    this.submitInfo = '报名'
                 })
         },
         toggleGender() {
@@ -105,13 +116,25 @@ export default {
             }
         },
         checkEmail(e) {
-            let val = e.target.value
 
-            if (/\w+@\w+\.\w+/g.test(val)) {
-                this.emailError = false
-            }else {
-                this.emailError = true
-            }
+            let val = e.target.value
+            this.emailError = /\w+@\w+\.\w+/g.test(val) ? false : true
+
+        },
+        checkTeam(e) {
+            let name = e.target.value
+            this.$http.get(`${Resource.prefix}/api/activity/${this.activityId}/teams`)
+                .then(res => {
+                    let repeated = res.data.filter(current => name == current.name)
+                    if (repeated.length > 0) {
+                        swal('团队已报名', '团队已报名，请告知其他三位小伙伴报名', 'info')
+                        this.allowClick = false
+                        this.submitInfo = '重复报名'
+                    }else {
+                        this.allowClick = true
+                        this.submitInfo = '申请'
+                    }
+                })
         }
     },
     computed: {
@@ -129,5 +152,8 @@ export default {
 
 .team__form--leader
     flex-design()
+    button[type=submit]
+        p
+            margin 0
 
 </style>

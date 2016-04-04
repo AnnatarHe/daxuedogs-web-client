@@ -144,7 +144,6 @@ export const getAuthObj = ({ dispatch, state }, ctx) => {
 
 export const getActivityTeams = ({ dispatch, state }, http) => {
     let id = state.currentActivityId
-    console.log(id)
     http.get(`${Resource.prefix}/api/activity/${id}/teams`)
         .then( res => {
             dispatch(types.ACTIVITY_TEAMS, res.data)

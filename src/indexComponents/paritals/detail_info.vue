@@ -15,7 +15,7 @@
             <div class="extra">
                 <div class="registed">
                     <div class="label">
-                        {{ detailObj.registed_count || '加载中...' }}
+                        {{ detailObj.registed_count || 0 }}
                     </div>
                     <span>人已报名</span>
                 </div>
@@ -50,7 +50,6 @@ export default {
     ready() {
         this.$http.get(`${Resource.prefix}/api/activity/${this.id}/withRegisted`)
             .then(res => {
-                console.log(res.data)
                 this.detailObj = res.data
                 this.downloadPath = Resource.prefix + res.data.attach
                 this.loaded = true
@@ -89,6 +88,8 @@ export default {
         flex-design()
         flex-direction column
         .extra
+            .label
+                color #fff
             span
                 display inline-block
             .end-time

@@ -6,7 +6,7 @@
         <div class="content">
             <h5 class="title">{{ detail.title || 'loading' }}</h5>
             <div class="extra">
-                <div class="label">{{ detail.registed_count || 'loading' }}</div>
+                <div class="label">{{ detail.registed_count || 0 }}</div>
                 <span>人报名</span>
             </div>
             <p class="desc">{{ detail.desc || 'loading' | cutdesc  }}</p>
@@ -62,6 +62,8 @@ export default {
             font-size 1.5rem
             margin-bottom .8rem
         .extra
+            .label
+                color #fff
             span
                 display inline-block
         .link-container

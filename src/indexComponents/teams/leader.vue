@@ -81,9 +81,11 @@ export default {
     },
     ready() {
         this.$set('team.gender' ,'male')
+        this.$set('team.major_id', 0)
         this.$http.get(`${Resource.prefix}/api/majors`)
             .then( res => {
                 this.majors = res.data
+                this.team.major_id = res.data[0]['id']
             })
             .catch( err => console.log(err))
     },
@@ -95,7 +97,7 @@ export default {
                 .then( res => {
                     if (res.status == 200) {
                         this.submitInfo = '报名'
-                        swal('成功', `队长报名成功，请截图本页面报名号：${res.data}`, 'success')
+                        swal('成功', `队长报名成功，请截图本页面报名号：${res.data.msg}`, 'success')
                     }else {
                         swal(res.status, `出错了，${res.msg}`, 'error')
                     }

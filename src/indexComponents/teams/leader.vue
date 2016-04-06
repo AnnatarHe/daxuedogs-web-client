@@ -129,7 +129,7 @@ export default {
                 .then(res => {
                     let repeated = res.data.filter(current => name == current.name)
                     if (repeated.length > 0) {
-                        swal('团队已报名', '团队已报名，请告知其他三位小伙伴报名', 'info')
+                        swal('该团队已报名', '该团队已报名，请告知其他三位小伙伴报名', 'info')
                         this.allowClick = false
                         this.submitInfo = '重复报名'
                     }else {

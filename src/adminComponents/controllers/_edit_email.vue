@@ -10,9 +10,9 @@
             ></textarea>
         </div>
         <div class="submit-field field">
-            <button class="button button--none button--primary">
+            <button class="button button--none button--primary" :disabled="sending">
                 <i class="fa fa-paper-plane-o fa-lg"></i>
-                发送
+                {{ sedingText }}
             </button>
         </div>
     </form>
@@ -25,7 +25,9 @@ export default {
     data() {
         return {
             head: '',
-            content: ''
+            content: '',
+            sending: false,
+            sedingText: '发送'
         }
     },
     components: {
@@ -38,16 +40,18 @@ export default {
                 head: this.head,
                 message: this.content
             }
+            this.sending = true
+            this.sedingText = '正在发送...'
             this.$http.post(`${Resource.prefix}/api/activity/${id}/email`, data)
                 .then( res => {
                     if (res.status == 200) {
-                        swal('邮件发送中', '邮件正在发送，请耐心等候', 'success')
+                        this.sending = false
+                        this.sedingText = '发送'
+                        swal('邮件已发送', '邮件已发送，请耐心等候', 'success')
                     }else {
                         swal('错误', `出现错误, 请将此信息反馈至更高级管理员. statusCode: ${res.status}`, 'error')
                     }
                 })
-
-            console.log('send email');
         }
     },
     computed: {

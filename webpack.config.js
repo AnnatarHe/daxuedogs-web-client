@@ -47,5 +47,7 @@ module.exports = {
     plugins: [
         // 打包
         new webpack.optimize.CommonsChunkPlugin('vendors.js'),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ]
 };

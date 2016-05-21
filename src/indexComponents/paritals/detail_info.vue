@@ -17,7 +17,7 @@
                     <div class="label">
                         {{ detailObj.registed_count || 0 }}
                     </div>
-                    <span>人已报名</span>
+                    <span>支队伍已报名</span>
                 </div>
                 <div class="end-time">{{ detailObj.endtime || '加载中...' }}</div>
                 <div class="attach">

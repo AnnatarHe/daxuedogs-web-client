@@ -7,7 +7,7 @@
             <h5 class="title">{{ detail.title || 'loading' }}</h5>
             <div class="extra">
                 <div class="label">{{ detail.registed_count || 0 }}</div>
-                <span>人报名</span>
+                <span>支队伍报名</span>
             </div>
             <p class="desc">{{ detail.desc || 'loading' | cutdesc  }}</p>
             <div class="link-container">

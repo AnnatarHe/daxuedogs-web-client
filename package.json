@@ -4,7 +4,7 @@
   "description": "daxuedogs web client front-end",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --process --colors --hot --inline --devtool eval",
+    "dev": "webpack-dev-server --process --colors --hot --inline --devtool eval --config webpack.dev.config.js",
     "build": "webpack --process --colors",
     "deploy": "webpack -p --process --colors --config webpack.production.config.js",
     "test": "karma start webpack.test.config.js"
@@ -27,6 +27,7 @@
     "babel-runtime": "^5.8.35",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.0",
+    "faker": "^3.1.0",
     "style-loader": "^0.13.0",
     "stylus-loader": "^1.5.1",
     "vue": "^1.0.16",

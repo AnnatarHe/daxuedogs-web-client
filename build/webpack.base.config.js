@@ -13,7 +13,7 @@ const config = {
         publicPath: '/',
         filename: 'bundle.[hash].js'
     },
-    modules: {
+    module: {
         loaders: [{
             test: /.jsx?$/,
             exclude: /node_modules/,

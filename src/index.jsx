@@ -21,8 +21,6 @@ const history = syncHistoryWithStore(browserHistory, store, {
     } 
 })
 
-
-
 const Root = () => {
     return (
         <Provider store={store}>

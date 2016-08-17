@@ -3,11 +3,16 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const values = require('postcss-modules-values')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoprefixer = require('autoprefixer')
+const poststylus = require('poststylus')
 
 const config = {
-    entry: {
-        index: path.resolve(__dirname, '..', 'src/index.jsx')
-    },
+    entry: [
+        'es6-promise',
+        'whatwg-fetch',
+        'babel-polyfill',
+        path.resolve(__dirname, '..', 'src/index.jsx')
+    ],
     output: {
         path: path.resolve(__dirname, '..', 'dist'),
         publicPath: '/',
@@ -31,10 +36,26 @@ const config = {
             loader: 'url-loader?limit=8192'
         }]
     },
+    stylus: {
+        use: [
+            poststylus(['autoprefixer'])
+        ]
+    },
     postcss: [
-        values
+        values,
+        autoprefixer({browsers: ['last 2 versions']})
     ],
     plugins: [
+        new webpack.EnvironmentPlugin([
+            'NODE_ENV'
+        ]),
+        new webpack.DllReferencePlugin({
+            context: path.resolve(__dirname, '..'),
+            manifest: require('../dist/vendor-manifest.json')
+        }),
+        new ExtractTextPlugin('styles.[hash].css', {
+            allChunk: true
+        }),
         new HtmlWebpackPlugin({
             title: 'daxuedogs',
             inject: 'body',

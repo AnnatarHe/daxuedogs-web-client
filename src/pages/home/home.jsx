@@ -1,17 +1,19 @@
+'use strict'
+
 import React from 'react'
 
-class Dashboard extends React.Component {
+class Home extends React.Component {
     constructor(props) {
         super(props)
     }
 
     render() {
         return (
-             <div>
-                Dashboard
-             </div>
+            <div>
+                Home
+            </div>
         );
     }
 }
 
-export default Dashboard
+export default Home

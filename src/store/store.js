@@ -1,3 +1,9 @@
+/**
+ * @author AnnatarHe
+ * @email iamhele1994@gmail.com
+ * @date 2016/8/17
+ */
+
 import { createStore, applyMiddleware, compose } from 'redux'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'

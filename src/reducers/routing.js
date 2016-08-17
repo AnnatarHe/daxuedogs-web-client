@@ -1,3 +1,9 @@
+/**
+ * @author AnnatarHe
+ * @email iamhele1994@gmail.com
+ * @date 2016/8/17
+ */
+
 import Immutable from 'immutable'
 import {
     LOCATION_CHANGE
